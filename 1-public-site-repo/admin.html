@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>News Review</title>
+<style>
+  :root {
+    --bg: #f6f5f3; --panel: #ffffff; --text: #1d1d1f; --muted: #66625e; --line: #e2dfdb;
+    --accent: #e4003b; --accent-text: #ffffff; --ok: #1a7f4b; --warn-bg: #fff4e0; --warn: #8a5300;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #161514; --panel: #201f1d; --text: #f2f0ed; --muted: #a9a49e; --line: #36332f;
+      --accent: #ff3b63; --accent-text: #160006; --ok: #4cc38a; --warn-bg: #3a2a10; --warn: #ffc56b;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  header { background: var(--accent); color: var(--accent-text); padding: 14px 16px; }
+  header h1 { margin: 0; font-size: 18px; }
+  nav { display: flex; gap: 4px; padding: 10px 16px 0; max-width: 1100px; margin: 0 auto; flex-wrap: wrap; }
+  nav button { border: 1px solid var(--line); border-bottom: 0; background: transparent; color: var(--muted); padding: 8px 14px; border-radius: 8px 8px 0 0; font: inherit; cursor: pointer; }
+  nav button[aria-selected="true"] { background: var(--panel); color: var(--text); font-weight: 600; }
+  main { max-width: 1100px; margin: 0 auto; padding: 0 16px 40px; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 0 10px 10px 10px; padding: 20px; }
+  .layout { display: grid; grid-template-columns: 300px 1fr; gap: 20px; }
+  @media (max-width: 760px) { .layout { grid-template-columns: 1fr; } }
+  .list { display: flex; flex-direction: column; gap: 8px; }
+  .item { text-align: left; border: 1px solid var(--line); background: transparent; color: inherit; border-radius: 8px; padding: 10px 12px; font: inherit; cursor: pointer; }
+  .item[aria-current="true"] { border-color: var(--accent); box-shadow: inset 3px 0 0 var(--accent); }
+  .item small { display: block; color: var(--muted); }
+  label { display: block; font-weight: 600; margin: 14px 0 4px; }
+  input[type=text], input[type=password], input[type=url], textarea { width: 100%; padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--text); font: inherit; }
+  textarea { min-height: 80px; resize: vertical; }
+  textarea.body { min-height: 360px; }
+  .hint { color: var(--muted); font-size: 13px; margin: 2px 0 0; }
+  .btns { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+  button.primary, button.secondary { padding: 9px 16px; border-radius: 6px; font: inherit; font-weight: 600; cursor: pointer; }
+  button.primary { background: var(--accent); color: var(--accent-text); border: 0; }
+  button.primary:disabled { opacity: .45; cursor: not-allowed; }
+  button.secondary { background: transparent; color: var(--text); border: 1px solid var(--line); }
+  .checks { background: var(--warn-bg); color: var(--warn); border-radius: 8px; padding: 12px 14px; margin-top: 16px; }
+  .checks label { font-weight: 400; display: flex; gap: 8px; align-items: flex-start; margin: 6px 0; }
+  .checks input { margin-top: 4px; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  td, th { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+  .status { margin: 0 0 12px; min-height: 1.5em; }
+  .status.ok { color: var(--ok); }
+  .status.err { color: var(--accent); }
+  .empty { color: var(--muted); }
+  .banner { background: var(--warn-bg); color: var(--warn); padding: 10px 14px; border-radius: 8px; margin-bottom: 14px; }
+</style>
+</head>
+<body>
+<header><h1>Swansea Labour · News review</h1></header>
+<nav role="tablist">
+  <button role="tab" data-tab="drafts" aria-selected="true">Drafts</button>
+  <button role="tab" data-tab="published" aria-selected="false">Published</button>
+  <button role="tab" data-tab="settings" aria-selected="false">Settings</button>
+  <button role="tab" data-tab="connect" aria-selected="false">Connect</button>
+</nav>
+<main>
+  <div class="panel">
+    <p id="status" class="status" role="status"></p>
+    <section id="tab-drafts"></section>
+    <section id="tab-published" hidden></section>
+    <section id="tab-settings" hidden></section>
+    <section id="tab-connect" hidden>
+      <p>This page talks to your two GitHub repositories. These details are saved only in this browser. Use this page on your own computer only.</p>
+      <label for="c-owner">GitHub username</label>
+      <input id="c-owner" type="text" autocomplete="off">
+      <label for="c-engine">Private engine repository name</label>
+      <input id="c-engine" type="text" value="swansea-labour-news-engine" autocomplete="off">
+      <label for="c-site">Public site repository name</label>
+      <input id="c-site" type="text" value="swansea-labour-news" autocomplete="off">
+      <label for="c-token">GitHub access token</label>
+      <input id="c-token" type="password" autocomplete="off">
+      <p class="hint">A fine-grained token with Contents: read and write on just these two repositories.</p>
+      <div class="btns"><button class="primary" id="c-save">Save and connect</button></div>
+    </section>
+  </div>
+</main>
+
+<script>
+const $ = (s) => document.querySelector(s);
+const store = {
+  get(k) { try { return localStorage.getItem("slnews." + k) || ""; } catch { return ""; } },
+  set(k, v) { try { localStorage.setItem("slnews." + k, v); } catch {} },
+};
+let conn = { owner: store.get("owner"), engine: store.get("engine"), site: store.get("site"), token: store.get("token") };
+let state = { drafts: [], published: null, config: null, selected: null };
+
+function setStatus(msg, kind = "") { const s = $("#status"); s.textContent = msg; s.className = "status " + kind; }
+function el(tag, attrs = {}, ...kids) {
+  const e = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k.startsWith("on")) e.addEventListener(k.slice(2), v);
+    else if (k === "text") e.textContent = v;
+    else if (v !== false && v != null) e.setAttribute(k, v === true ? "" : v);
+  }
+  for (const kid of kids.flat()) if (kid != null) e.append(kid);
+  return e;
+}
+
+// ---- GitHub contents API ----
+const b64encode = (str) => {
+  const bytes = new TextEncoder().encode(str); let bin = "";
+  for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+  return btoa(bin);
+};
+const b64decode = (b64) => new TextDecoder().decode(Uint8Array.from(atob(b64.replace(/\s/g, "")), (c) => c.charCodeAt(0)));
+
+async function gh(repo, path, opts = {}) {
+  const res = await fetch(`https://api.github.com/repos/${conn.owner}/${repo}/contents/${path}`, {
+    ...opts,
+    headers: { Authorization: `Bearer ${conn.token}`, Accept: "application/vnd.github+json", ...(opts.headers || {}) },
+    cache: "no-store",
+  });
+  if (res.status === 404 && !opts.method) return null;
+  if (!res.ok) throw new Error(`GitHub ${res.status}: ${(await res.json().catch(() => ({}))).message || res.statusText}`);
+  return res.json();
+}
+async function readJson(repo, path) {
+  const f = await gh(repo, path);
+  return f && { data: JSON.parse(b64decode(f.content)), sha: f.sha };
+}
+const writeJson = (repo, path, data, sha, message) =>
+  gh(repo, path, { method: "PUT", body: JSON.stringify({ message, content: b64encode(JSON.stringify(data, null, 2) + "\n"), sha }) });
+const deleteFile = (repo, path, sha, message) =>
+  gh(repo, path, { method: "DELETE", body: JSON.stringify({ message, sha }) });
+
+// ---- Loading ----
+async function loadAll() {
+  setStatus("Loading…");
+  const [config, published, dir] = await Promise.all([
+    readJson(conn.engine, "config.json"),
+    readJson(conn.site, "articles.json"),
+    gh(conn.engine, "data/drafts"),
+  ]);
+  state.config = config;
+  state.published = published || { data: { imprint: "", articles: [] }, sha: undefined };
+  const files = (dir || []).filter((f) => f.name.endsWith(".json"));
+  state.drafts = (await Promise.all(files.map(async (f) => {
+    const r = await readJson(conn.engine, f.path);
+    return r && { ...r.data, _path: f.path, _sha: r.sha };
+  }))).filter(Boolean).sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+  setStatus(`${state.drafts.length} draft(s) waiting.`);
+  renderDrafts(); renderPublished(); renderSettings();
+}
+
+// ---- Drafts ----
+function renderDrafts() {
+  const root = $("#tab-drafts"); root.innerHTML = "";
+  if (!state.config?.data.imprint) {
+    root.append(el("p", { class: "banner", text: "Publishing is switched off until you add a digital imprint in Settings (legally required on political material)." }));
+  }
+  if (!state.drafts.length) {
+    root.append(el("p", { class: "empty", text: "No drafts. Drop a press release into the Google Drive folder and it will appear here within the hour." }));
+    return;
+  }
+  if (!state.selected || !state.drafts.find((d) => d.id === state.selected)) state.selected = state.drafts[0].id;
+  const list = el("div", { class: "list" }, state.drafts.map((d) =>
+    el("button", { class: "item", "aria-current": String(d.id === state.selected), onclick: () => { state.selected = d.id; renderDrafts(); } },
+      d.headline || d.sourceFile,
+      el("small", { text: `${d.status === "needs-attention" ? "Needs attention · " : ""}${d.sourceFile} · ${new Date(d.createdAt).toLocaleString("en-GB")}` }))));
+  root.append(el("div", { class: "layout" }, list, draftEditor(state.drafts.find((d) => d.id === state.selected))));
+}
+
+function draftEditor(d) {
+  const f = {
+    headline: el("input", { type: "text", value: d.headline }),
+    summary: el("textarea", {}, d.summary),
+    body: el("textarea", { class: "body" }, d.body.join("\n\n")),
+    sourceTitle: el("input", { type: "text", value: d.source_title }),
+    sourceDate: el("input", { type: "text", value: d.source_date }),
+    sourceUrl: el("input", { type: "url", value: d.sourceUrl || "", placeholder: "https://www.swansea.gov.uk/…" }),
+  };
+  const checkBoxes = [...d.checks, "I have read the article and every fact matches the original press release."].map((c) =>
+    el("label", {}, el("input", { type: "checkbox", onchange: update }), c));
+  const publishBtn = el("button", { class: "primary", onclick: publish }, "Publish to website");
+  function update() {
+    publishBtn.disabled = !state.config?.data.imprint || checkBoxes.some((l) => !l.firstChild.checked);
+  }
+  update();
+
+  async function publish() {
+    publishBtn.disabled = true;
+    try {
+      setStatus("Publishing…");
+      const fresh = await readJson(conn.site, "articles.json") || { data: { imprint: "", articles: [] } };
+      const article = {
+        id: d.id,
+        date: new Date().toISOString(),
+        headline: f.headline.value.trim(),
+        summary: f.summary.value.trim(),
+        body: f.body.value.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean),
+        sourceTitle: f.sourceTitle.value.trim(),
+        sourceDate: f.sourceDate.value.trim(),
+        sourceUrl: f.sourceUrl.value.trim(),
+      };
+      const articles = [article, ...fresh.data.articles.filter((a) => a.id !== d.id)];
+      await writeJson(conn.site, "articles.json", { imprint: state.config.data.imprint, articles }, fresh.sha, `Publish: ${article.headline}`);
+      await deleteFile(conn.engine, d._path, d._sha, `Published draft ${d.id}`);
+      await loadAll();
+      setStatus("Published. It will show on the website within a few minutes.", "ok");
+    } catch (e) { setStatus(e.message, "err"); update(); }
+  }
+  async function reject() {
+    if (!confirm("Reject and delete this draft?")) return;
+    try {
+      await deleteFile(conn.engine, d._path, d._sha, `Rejected draft ${d.id}`);
+      await loadAll();
+      setStatus("Draft rejected.", "ok");
+    } catch (e) { setStatus(e.message, "err"); }
+  }
+
+  const people = d.people_quoted.length
+    ? el("table", {}, el("tr", {}, el("th", { text: "Quoted" }), el("th", { text: "Role" }), el("th", { text: "Treated as" })),
+        d.people_quoted.map((p) => el("tr", {}, el("td", { text: p.name }), el("td", { text: p.role }), el("td", { text: p.treatment }))))
+    : el("p", { class: "hint", text: "No one is quoted." });
+
+  return el("div", {},
+    el("label", { text: "Headline" }), f.headline,
+    el("label", { text: "Summary (shown on the news card)" }), f.summary,
+    el("label", { text: "Article" }), f.body,
+    el("p", { class: "hint", text: "Leave a blank line between paragraphs." }),
+    el("label", { text: "People quoted" }), people,
+    el("label", { text: "Original press release title" }), f.sourceTitle,
+    el("label", { text: "Original press release date" }), f.sourceDate,
+    el("label", { text: "Link to the original on swansea.gov.uk (recommended)" }), f.sourceUrl,
+    el("div", { class: "checks" }, el("strong", { text: "Before publishing, confirm:" }), checkBoxes),
+    el("div", { class: "btns" }, publishBtn, el("button", { class: "secondary", onclick: reject }, "Reject")));
+}
+
+// ---- Published ----
+function renderPublished() {
+  const root = $("#tab-published"); root.innerHTML = "";
+  const list = state.published.data.articles;
+  if (!list.length) { root.append(el("p", { class: "empty", text: "Nothing published yet." })); return; }
+  root.append(el("table", {},
+    el("tr", {}, el("th", { text: "Date" }), el("th", { text: "Headline" }), el("th", {})),
+    list.map((a) => el("tr", {},
+      el("td", { text: new Date(a.date).toLocaleDateString("en-GB") }),
+      el("td", { text: a.headline }),
+      el("td", {}, el("button", { class: "secondary", onclick: () => unpublish(a) }, "Unpublish"))))));
+}
+async function unpublish(a) {
+  if (!confirm(`Remove "${a.headline}" from the website?`)) return;
+  try {
+    const fresh = await readJson(conn.site, "articles.json");
+    fresh.data.articles = fresh.data.articles.filter((x) => x.id !== a.id);
+    await writeJson(conn.site, "articles.json", fresh.data, fresh.sha, `Unpublish: ${a.headline}`);
+    await loadAll();
+    setStatus("Removed from the website.", "ok");
+  } catch (e) { setStatus(e.message, "err"); }
+}
+
+// ---- Settings ----
+function renderSettings() {
+  const root = $("#tab-settings"); root.innerHTML = "";
+  const c = state.config.data;
+  const f = {
+    imprint: el("textarea", { placeholder: "Promoted by [name] on behalf of Swansea Labour, both at [address]." }, c.imprint),
+    councillors: el("textarea", {}, c.labourCouncillors.join("\n")),
+    councilDescription: el("input", { type: "text", value: c.councilDescription }),
+    styleNotes: el("textarea", {}, c.styleNotes),
+    driveInboxFolderId: el("input", { type: "text", value: c.driveInboxFolderId }),
+  };
+  async function save() {
+    try {
+      const fresh = await readJson(conn.engine, "config.json");
+      const next = {
+        ...fresh.data,
+        imprint: f.imprint.value.trim(),
+        labourCouncillors: f.councillors.value.split("\n").map((s) => s.trim()).filter(Boolean),
+        councilDescription: f.councilDescription.value.trim(),
+        styleNotes: f.styleNotes.value.trim(),
+        driveInboxFolderId: f.driveInboxFolderId.value.trim(),
+      };
+      await writeJson(conn.engine, "config.json", next, fresh.sha, "Update settings");
+      const site = await readJson(conn.site, "articles.json");
+      if (site && site.data.imprint !== next.imprint) {
+        await writeJson(conn.site, "articles.json", { ...site.data, imprint: next.imprint }, site.sha, "Update imprint");
+      }
+      await loadAll();
+      setStatus("Settings saved.", "ok");
+    } catch (e) { setStatus(e.message, "err"); }
+  }
+  root.append(
+    el("label", { text: "Digital imprint" }), f.imprint,
+    el("p", { class: "hint", text: "Shown under every article and the news reel. Publishing stays off until this is filled in." }),
+    el("label", { text: "Labour councillors (one per line, e.g. \"Cllr Jane Jones, Cabinet Member for Education\")" }), f.councillors,
+    el("p", { class: "hint", text: "Only these people are quoted as Labour without a check." }),
+    el("label", { text: "How to describe the council" }), f.councilDescription,
+    el("label", { text: "Writing style notes" }), f.styleNotes,
+    el("label", { text: "Google Drive drop folder ID" }), f.driveInboxFolderId,
+    el("p", { class: "hint", text: "The last part of the folder's web address, after /folders/." }),
+    el("div", { class: "btns" }, el("button", { class: "primary", onclick: save }, "Save settings")));
+}
+
+// ---- Tabs & connect ----
+function showTab(name) {
+  document.querySelectorAll("nav button").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.tab === name)));
+  document.querySelectorAll("main section").forEach((s) => (s.hidden = s.id !== "tab-" + name));
+}
+document.querySelectorAll("nav button").forEach((b) => b.addEventListener("click", () => showTab(b.dataset.tab)));
+
+$("#c-owner").value = conn.owner;
+if (conn.engine) $("#c-engine").value = conn.engine;
+if (conn.site) $("#c-site").value = conn.site;
+$("#c-token").value = conn.token;
+$("#c-save").addEventListener("click", async () => {
+  conn = { owner: $("#c-owner").value.trim(), engine: $("#c-engine").value.trim(), site: $("#c-site").value.trim(), token: $("#c-token").value.trim() };
+  for (const [k, v] of Object.entries(conn)) store.set(k, v);
+  await start();
+});
+
+async function start() {
+  if (!conn.owner || !conn.token) { showTab("connect"); setStatus("Connect your GitHub repositories to begin."); return; }
+  try { await loadAll(); showTab("drafts"); }
+  catch (e) { showTab("connect"); setStatus(e.message, "err"); }
+}
+start();
+</script>
+</body>
+</html>
