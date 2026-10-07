@@ -11,6 +11,7 @@
  *   data-ward="Gowerton"       only show stories tagged with this ward
  *   data-imprint="off"         hide the imprint line (only if the page already carries one)
  *   data-all-url="/news"       where "See all news" points when used on a ward page
+ *   data-text-size="17px"      text size; leave out to match the site's own body text
  *
  * Each story has its own address (?article=ID) with its own title, description,
  * sharing image and NewsArticle structured data, so Google can index it. Old
@@ -28,31 +29,32 @@
   var wardFilter = (root.getAttribute("data-ward") || "").trim().toLowerCase();
   var showImprint = root.getAttribute("data-imprint") !== "off";
   var allUrl = root.getAttribute("data-all-url") || "";
+  // Text size: matches the site's own body text unless data-text-size="17px" (or similar) is set.
+  var fontSize = /^\d+(\.\d+)?(px|rem|em)$/.test(root.getAttribute("data-text-size") || "") ? root.getAttribute("data-text-size") : "inherit";
   var PARAM = "article";
 
   var css =
     "#sl-news{--sl-accent:" + accent + ";display:block;width:100%;max-width:100%;color:inherit;font-family:inherit;" +
-    "font-size:clamp(16px,0.6vw + 13px,19px);line-height:1.55;container-type:inline-size}" +
+    "font-size:" + fontSize + ";line-height:1.6;container-type:inline-size}" +
     "#sl-news *{box-sizing:border-box}" +
     "#sl-news .sl-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:clamp(20px,3vw,40px)}" +
     "#sl-news .sl-card{display:flex;flex-direction:column;text-decoration:none;color:inherit;min-width:0}" +
     "#sl-news .sl-media{position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:6px;margin-bottom:16px;background:var(--sl-accent)}" +
     "#sl-news .sl-media img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}" +
     "#sl-news .sl-card:hover .sl-media img{transform:scale(1.04)}" +
-    "#sl-news .sl-ph{position:absolute;inset:0;display:flex;align-items:flex-end;padding:18px;color:#fff;font-weight:800;" +
-    "font-size:1.3em;line-height:1.1;letter-spacing:-.01em;background:linear-gradient(135deg,var(--sl-accent),color-mix(in srgb,var(--sl-accent) 70%,#000))}" +
-    "#sl-news .sl-date{font-size:.78em;letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin:0 0 8px}" +
-    "#sl-news .sl-title{font-size:1.3em;line-height:1.2;font-weight:700;margin:0 0 10px}" +
+    "#sl-news .sl-ph{position:absolute;inset:0;display:flex;align-items:flex-end;padding:16px;color:#fff;font-weight:700;" +
+    "font-size:1.15em;line-height:1.1;letter-spacing:-.01em;background:linear-gradient(135deg,var(--sl-accent),color-mix(in srgb,var(--sl-accent) 70%,#000))}" +
+    "#sl-news .sl-date{font-size:.75em;letter-spacing:.08em;text-transform:uppercase;opacity:.7;margin:0 0 6px}" +
+    "#sl-news .sl-title{font-size:1.2em;line-height:1.25;font-weight:600;margin:0 0 8px}" +
     "#sl-news .sl-card:hover .sl-title,#sl-news .sl-card:focus-visible .sl-title{text-decoration:underline;text-decoration-color:var(--sl-accent);text-underline-offset:4px}" +
-    "#sl-news .sl-summary{margin:0 0 14px}" +
-    "#sl-news .sl-more{margin-top:auto;font-weight:700;color:var(--sl-accent)}" +
+    "#sl-news .sl-summary{margin:0 0 12px}" +
+    "#sl-news .sl-more{margin-top:auto;font-weight:600;color:var(--sl-accent)}" +
     "@container (min-width:860px){" +
-    "#sl-news .sl-card.sl-feature{grid-column:1/-1;display:grid;grid-template-columns:3fr 2fr;gap:clamp(24px,3vw,48px);align-items:center}" +
+    "#sl-news .sl-card.sl-feature{grid-column:1/-1;display:grid;grid-template-columns:3fr 2fr;gap:clamp(24px,3vw,40px);align-items:center}" +
     "#sl-news .sl-feature .sl-media{margin-bottom:0}" +
-    "#sl-news .sl-feature .sl-title{font-size:2em}" +
-    "#sl-news .sl-feature .sl-summary{font-size:1.1em}}" +
+    "#sl-news .sl-feature .sl-title{font-size:1.6em;line-height:1.2}}" +
     "#sl-news .sl-article{max-width:760px;margin:0 auto}" +
-    "#sl-news .sl-article h2{font-size:clamp(1.8em,4cqi,2.6em);line-height:1.12;margin:6px 0 22px}" +
+    "#sl-news .sl-article h2{font-size:clamp(1.5em,3.2cqi,1.9em);line-height:1.2;font-weight:600;margin:6px 0 20px}" +
     "#sl-news .sl-article p{margin:0 0 1.1em}" +
     "#sl-news .sl-figure{margin:0 0 1.4em}" +
     "#sl-news .sl-figure img{width:100%;height:auto;display:block;border-radius:6px}" +
