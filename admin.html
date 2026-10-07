@@ -45,12 +45,21 @@
   .checks label { font-weight: 400; display: flex; gap: 8px; align-items: flex-start; margin: 6px 0; }
   .checks input { margin-top: 4px; }
   table { border-collapse: collapse; width: 100%; font-size: 14px; }
-  td, th { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+  td, th { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
   .status { margin: 0 0 12px; min-height: 1.5em; }
   .status.ok { color: var(--ok); }
   .status.err { color: var(--accent); }
   .empty { color: var(--muted); }
   .banner { background: var(--warn-bg); color: var(--warn); padding: 10px 14px; border-radius: 8px; margin-bottom: 14px; }
+  .photo { display: grid; grid-template-columns: 200px 1fr; gap: 14px; border: 1px solid var(--line); border-radius: 8px; padding: 12px; margin-top: 10px; }
+  .photo .thumb { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 4px; background: var(--bg); display: block; }
+  .photo label { margin-top: 8px; }
+  .photo label:first-child { margin-top: 0; }
+  .photo .row { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 10px; }
+  .photo .row label { display: flex; gap: 6px; align-items: center; font-weight: 400; margin: 0; }
+  .photo.off { opacity: .5; }
+  @media (max-width: 600px) { .photo { grid-template-columns: 1fr; } }
+  .mini { width: 72px; height: 48px; object-fit: cover; border-radius: 3px; display: block; background: var(--bg); }
 </style>
 </head>
 <body>
@@ -69,8 +78,8 @@
     <section id="tab-settings" hidden></section>
     <section id="tab-connect" hidden>
       <p>This page talks to your two GitHub repositories. These details are saved only in this browser. Use this page on your own computer only.</p>
-      <label for="c-owner">GitHub username</label>
-      <input id="c-owner" type="text" autocomplete="off">
+      <label for="c-owner">GitHub organisation or username that owns the repositories</label>
+      <input id="c-owner" type="text" autocomplete="off" placeholder="swansealabour">
       <label for="c-engine">Private engine repository name</label>
       <input id="c-engine" type="text" value="swansea-labour-news-engine" autocomplete="off">
       <label for="c-site">Public site repository name</label>
@@ -92,6 +101,11 @@ const store = {
 let conn = { owner: store.get("owner"), engine: store.get("engine"), site: store.get("site"), token: store.get("token") };
 let state = { drafts: [], published: null, config: null, selected: null };
 
+const DEFAULT_PAGE_URL = "https://www.swansealabour.org/news";
+const WARDS = ["Bôn-y-maen", "Castle", "Cockett", "Dunvant & Killay", "Gorseinon & Penyrheol", "Gowerton",
+  "Landore", "Llansamlet", "Llwchwr", "Morriston", "Mynyddbach", "Penclawdd", "Penderry",
+  "Pontarddulais", "Pontlliw & Tircoed", "St Thomas", "Townhill", "Waunarlwydd", "West Cross"];
+
 function setStatus(msg, kind = "") { const s = $("#status"); s.textContent = msg; s.className = "status " + kind; }
 function el(tag, attrs = {}, ...kids) {
   const e = document.createElement(tag);
@@ -104,6 +118,26 @@ function el(tag, attrs = {}, ...kids) {
   return e;
 }
 
+// An imprint only counts once it has been filled in with real details.
+function imprintOk(text) {
+  const t = (text || "").trim();
+  if (t.length < 20) return false;
+  if (/\bXX|\[name\]|\[address\]/i.test(t)) return false;
+  return /promoted by/i.test(t);
+}
+function pageUrlOf(config) {
+  return ((config && config.data.pageUrl) || DEFAULT_PAGE_URL).replace(/\/+$/, "");
+}
+function siteUrl(path) {
+  return /^(https?:)?\/\//.test(path) ? path : `https://${conn.owner.toLowerCase()}.github.io/${conn.site}/${path}`;
+}
+// Photos on a published article. Understands the older single "image" field too.
+function imagesOf(a) {
+  const list = (a.images || []).filter((i) => i && i.src);
+  if (!list.length && a.image) list.push({ src: a.image, alt: a.imageAlt || "", caption: "", credit: "" });
+  return list;
+}
+
 // ---- GitHub contents API ----
 const b64encode = (str) => {
   const bytes = new TextEncoder().encode(str); let bin = "";
@@ -111,9 +145,15 @@ const b64encode = (str) => {
   return btoa(bin);
 };
 const b64decode = (b64) => new TextDecoder().decode(Uint8Array.from(atob(b64.replace(/\s/g, "")), (c) => c.charCodeAt(0)));
+const bytesToB64 = (buf) => {
+  const bytes = new Uint8Array(buf); let bin = "";
+  for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+  return btoa(bin);
+};
 
+const api = (repo, path) => `https://api.github.com/repos/${conn.owner}/${repo}/contents/${path}`;
 async function gh(repo, path, opts = {}) {
-  const res = await fetch(`https://api.github.com/repos/${conn.owner}/${repo}/contents/${path}`, {
+  const res = await fetch(api(repo, path), {
     ...opts,
     headers: { Authorization: `Bearer ${conn.token}`, Accept: "application/vnd.github+json", ...(opts.headers || {}) },
     cache: "no-store",
@@ -122,14 +162,70 @@ async function gh(repo, path, opts = {}) {
   if (!res.ok) throw new Error(`GitHub ${res.status}: ${(await res.json().catch(() => ({}))).message || res.statusText}`);
   return res.json();
 }
+// Raw file bytes as base64, any size (works for private repositories).
+async function readRawB64(repo, path) {
+  const res = await fetch(api(repo, path), {
+    headers: { Authorization: `Bearer ${conn.token}`, Accept: "application/vnd.github.raw" },
+    cache: "no-store",
+  });
+  if (!res.ok) throw new Error(`GitHub ${res.status} reading ${path}`);
+  return bytesToB64(await res.arrayBuffer());
+}
 async function readJson(repo, path) {
   const f = await gh(repo, path);
   return f && { data: JSON.parse(b64decode(f.content)), sha: f.sha };
 }
-const writeJson = (repo, path, data, sha, message) =>
-  gh(repo, path, { method: "PUT", body: JSON.stringify({ message, content: b64encode(JSON.stringify(data, null, 2) + "\n"), sha }) });
+const put = (repo, path, content, sha, message) =>
+  gh(repo, path, { method: "PUT", body: JSON.stringify({ message, content, ...(sha && { sha }) }) });
+const writeJson = (repo, path, data, sha, message) => put(repo, path, b64encode(JSON.stringify(data, null, 2) + "\n"), sha, message);
+const writeText = (repo, path, text, sha, message) => put(repo, path, b64encode(text), sha, message);
+async function writeB64(repo, path, b64, message) {
+  const existing = await gh(repo, path);
+  return put(repo, path, b64, existing && existing.sha, message);
+}
 const deleteFile = (repo, path, sha, message) =>
   gh(repo, path, { method: "DELETE", body: JSON.stringify({ message, sha }) });
+async function deleteFolder(repo, path, message) {
+  const items = await gh(repo, path);
+  if (!Array.isArray(items)) return;
+  for (const f of items) if (f.type === "file") await deleteFile(repo, f.path, f.sha, message);
+}
+
+// Shrink a photo chosen on this computer to fit 1600 x 1600 and return base64 JPEG.
+// Re-drawing it on a canvas also removes location and camera details.
+async function resizePhoto(file) {
+  const bmp = await createImageBitmap(file);
+  const scale = Math.min(1, 1600 / Math.max(bmp.width, bmp.height));
+  const canvas = document.createElement("canvas");
+  canvas.width = Math.round(bmp.width * scale);
+  canvas.height = Math.round(bmp.height * scale);
+  const ctx = canvas.getContext("2d");
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(bmp, 0, 0, canvas.width, canvas.height);
+  const blob = await new Promise((r) => canvas.toBlob(r, "image/jpeg", 0.82));
+  return { b64: bytesToB64(await blob.arrayBuffer()), width: canvas.width, height: canvas.height };
+}
+
+// ---- Sitemap: one entry per article on the website page that hosts the reel ----
+function sitemapXml(pageUrl, articles) {
+  const esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  const rows = [`  <url><loc>${esc(pageUrl)}</loc></url>`];
+  for (const a of articles) {
+    const mod = (a.updated || a.date || "").slice(0, 10);
+    rows.push(`  <url><loc>${esc(pageUrl + "?article=" + encodeURIComponent(a.id))}</loc>${mod ? `<lastmod>${mod}</lastmod>` : ""}</url>`);
+  }
+  return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${rows.join("\n")}\n</urlset>\n`;
+}
+async function writeSitemap(articles) {
+  const existing = await gh(conn.site, "sitemap.xml");
+  await writeText(conn.site, "sitemap.xml", sitemapXml(pageUrlOf(state.config), articles), existing && existing.sha, "Update sitemap");
+}
+async function writeSite(data, sha, message) {
+  const payload = { imprint: data.imprint, pageUrl: pageUrlOf(state.config), articles: data.articles };
+  await writeJson(conn.site, "articles.json", payload, sha, message);
+  await writeSitemap(payload.articles);
+}
 
 // ---- Loading ----
 async function loadAll() {
@@ -139,13 +235,13 @@ async function loadAll() {
     readJson(conn.site, "articles.json"),
     gh(conn.engine, "data/drafts"),
   ]);
-  state.config = config;
+  state.config = config || { data: {}, sha: undefined };
   state.published = published || { data: { imprint: "", articles: [] }, sha: undefined };
-  const files = (dir || []).filter((f) => f.name.endsWith(".json"));
+  const files = (dir || []).filter((f) => f.type === "file" && f.name.endsWith(".json"));
   state.drafts = (await Promise.all(files.map(async (f) => {
     const r = await readJson(conn.engine, f.path);
     return r && { ...r.data, _path: f.path, _sha: r.sha };
-  }))).filter(Boolean).sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+  }))).filter(Boolean).sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || ""));
   setStatus(`${state.drafts.length} draft(s) waiting.`);
   renderDrafts(); renderPublished(); renderSettings();
 }
@@ -153,8 +249,8 @@ async function loadAll() {
 // ---- Drafts ----
 function renderDrafts() {
   const root = $("#tab-drafts"); root.innerHTML = "";
-  if (!state.config?.data.imprint) {
-    root.append(el("p", { class: "banner", text: "Publishing is switched off until you add a digital imprint in Settings (legally required on political material)." }));
+  if (!imprintOk(state.config.data.imprint)) {
+    root.append(el("p", { class: "banner", text: "Publishing is switched off until you add a real digital imprint in Settings (legally required on political material). Placeholder text such as XX does not count." }));
   }
   if (!state.drafts.length) {
     root.append(el("p", { class: "empty", text: "No drafts. Drop a press release into the Google Drive folder and it will appear here within the hour." }));
@@ -164,61 +260,135 @@ function renderDrafts() {
   const list = el("div", { class: "list" }, state.drafts.map((d) =>
     el("button", { class: "item", "aria-current": String(d.id === state.selected), onclick: () => { state.selected = d.id; renderDrafts(); } },
       d.headline || d.sourceFile,
-      el("small", { text: `${d.status === "needs-attention" ? "Needs attention · " : ""}${d.sourceFile} · ${new Date(d.createdAt).toLocaleString("en-GB")}` }))));
+      el("small", { text: [d.status === "needs-attention" ? "Needs attention" : "", (d.images || []).length ? `${d.images.length} photo(s)` : "", d.sourceFile || "", d.createdAt ? new Date(d.createdAt).toLocaleString("en-GB") : ""].filter(Boolean).join(" · ") }))));
   root.append(el("div", { class: "layout" }, list, draftEditor(state.drafts.find((d) => d.id === state.selected))));
+}
+
+// One photo in the draft editor. "source" is either a file in the engine repo or a photo picked on this computer.
+function photoCard(p, group, isLead, onChange) {
+  const thumb = el("img", { class: "thumb", alt: "" });
+  if (p.b64) thumb.src = "data:image/jpeg;base64," + p.b64;
+  else readRawB64(conn.engine, p.file).then((b) => { p.b64 = b; thumb.src = "data:image/jpeg;base64," + b; }).catch(() => { thumb.alt = "Preview unavailable"; });
+  const f = {
+    alt: el("input", { type: "text", value: p.alt || "", placeholder: "What the photo shows, for screen-reader users", oninput: onChange }),
+    caption: el("input", { type: "text", value: p.caption || "", placeholder: "Optional caption shown under the photo" }),
+    credit: el("input", { type: "text", value: p.credit || "", placeholder: "Optional, e.g. Voi" }),
+    use: el("input", { type: "checkbox", checked: p.use !== false, onchange: () => { box.classList.toggle("off", !f.use.checked); onChange(); } }),
+    lead: el("input", { type: "radio", name: group, checked: isLead, onchange: onChange }),
+  };
+  const box = el("div", { class: "photo" + (p.use === false ? " off" : "") },
+    el("div", {}, thumb, el("p", { class: "hint", text: p.file ? `From ${p.file.split("/").pop()} in the press release` : "Added by you" })),
+    el("div", {},
+      el("label", { text: "Description (required if used)" }), f.alt,
+      el("label", { text: "Caption" }), f.caption,
+      el("label", { text: "Photo credit" }), f.credit,
+      el("div", { class: "row" }, el("label", {}, f.use, "Use this photo"), el("label", {}, f.lead, "Lead photo"))));
+  return {
+    el: box,
+    used: () => f.use.checked,
+    lead: () => f.lead.checked,
+    valid: () => !f.use.checked || f.alt.value.trim().length > 0,
+    value: () => ({ alt: f.alt.value.trim(), caption: f.caption.value.trim(), credit: f.credit.value.trim(), width: p.width, height: p.height }),
+    bytes: async () => p.b64 || (p.b64 = await readRawB64(conn.engine, p.file)),
+  };
 }
 
 function draftEditor(d) {
   const f = {
-    headline: el("input", { type: "text", value: d.headline }),
-    summary: el("textarea", {}, d.summary),
-    body: el("textarea", { class: "body" }, d.body.join("\n\n")),
-    sourceTitle: el("input", { type: "text", value: d.source_title }),
-    sourceDate: el("input", { type: "text", value: d.source_date }),
+    headline: el("input", { type: "text", value: d.headline || "" }),
+    summary: el("textarea", {}, d.summary || ""),
+    body: el("textarea", { class: "body" }, (d.body || []).join("\n\n")),
+    wards: el("input", { type: "text", value: (d.wards || []).join(", "), placeholder: "e.g. Gowerton, Dunvant & Killay" }),
+    sourceTitle: el("input", { type: "text", value: d.source_title || d.sourceTitle || "" }),
+    sourceDate: el("input", { type: "text", value: d.source_date || d.sourceDate || "" }),
     sourceUrl: el("input", { type: "url", value: d.sourceUrl || "", placeholder: "https://www.swansea.gov.uk/…" }),
   };
-  const checkBoxes = [...d.checks, "I have read the article and every fact matches the original press release."].map((c) =>
+  const group = "lead-" + d.id;
+  const photoBox = el("div");
+  const photos = [];
+  const addCard = (p, isLead) => { const c = photoCard(p, group, isLead, update); photos.push(c); photoBox.append(c.el); };
+  (d.images || []).filter((i) => i && i.file).forEach((p, i) => addCard({ ...p }, i === 0));
+
+  const picker = el("input", { type: "file", accept: "image/*", multiple: true, style: "display:none" });
+  picker.addEventListener("change", async () => {
+    for (const file of picker.files) {
+      try { const r = await resizePhoto(file); addCard({ b64: r.b64, width: r.width, height: r.height, alt: "", caption: "", credit: "" }, photos.length === 0); }
+      catch (e) { setStatus(`Could not read ${file.name}: ${e.message}`, "err"); }
+    }
+    picker.value = "";
+    update();
+  });
+  const addBtn = el("button", { class: "secondary", type: "button", onclick: () => picker.click() }, "Add a photo");
+  const photoHint = el("p", { class: "hint" });
+
+  const factChecks = [...(d.checks || []), "I have read the article and every fact matches the original press release."].map((c) =>
     el("label", {}, el("input", { type: "checkbox", onchange: update }), c));
+  const permission = el("label", {}, el("input", { type: "checkbox", onchange: update }), "We have permission to publish the photos being used, and anyone identifiable in them is happy to be pictured.");
   const publishBtn = el("button", { class: "primary", onclick: publish }, "Publish to website");
+
   function update() {
-    publishBtn.disabled = !state.config?.data.imprint || checkBoxes.some((l) => !l.firstChild.checked);
+    const anyUsed = photos.some((p) => p.used());
+    const missingAlt = photos.some((p) => !p.valid());
+    permission.style.display = anyUsed ? "" : "none";
+    photoHint.textContent = !photos.length
+      ? "No photos came with this press release. Without one, the story shows a red Swansea Labour panel."
+      : missingAlt ? "Every photo you use needs a description before you can publish." : "";
+    const ticks = [...factChecks, ...(anyUsed ? [permission] : [])];
+    publishBtn.disabled = !imprintOk(state.config.data.imprint) || missingAlt || ticks.some((l) => !l.firstChild.checked);
   }
   update();
 
   async function publish() {
     publishBtn.disabled = true;
     try {
+      const used = photos.filter((p) => p.used());
+      used.sort((a, b) => Number(b.lead()) - Number(a.lead()));
+      const images = [];
+      for (const [i, p] of used.entries()) {
+        setStatus(`Uploading photo ${i + 1} of ${used.length}…`);
+        const src = `images/${d.id}/${i + 1}.jpg`;
+        await writeB64(conn.site, src, await p.bytes(), `Photo for ${d.id}`);
+        images.push({ src, ...p.value() });
+      }
       setStatus("Publishing…");
       const fresh = await readJson(conn.site, "articles.json") || { data: { imprint: "", articles: [] } };
+      const now = new Date().toISOString();
+      const previous = fresh.data.articles.find((a) => a.id === d.id);
       const article = {
         id: d.id,
-        date: new Date().toISOString(),
+        date: previous ? previous.date : now,
+        updated: now,
         headline: f.headline.value.trim(),
         summary: f.summary.value.trim(),
         body: f.body.value.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean),
+        images,
+        wards: f.wards.value.split(",").map((s) => s.trim()).filter(Boolean),
         sourceTitle: f.sourceTitle.value.trim(),
         sourceDate: f.sourceDate.value.trim(),
         sourceUrl: f.sourceUrl.value.trim(),
       };
       const articles = [article, ...fresh.data.articles.filter((a) => a.id !== d.id)];
-      await writeJson(conn.site, "articles.json", { imprint: state.config.data.imprint, articles }, fresh.sha, `Publish: ${article.headline}`);
+      await writeSite({ imprint: state.config.data.imprint, articles }, fresh.sha, `Publish: ${article.headline}`);
       await deleteFile(conn.engine, d._path, d._sha, `Published draft ${d.id}`);
+      await deleteFolder(conn.engine, `data/drafts/${d.id}`, `Published draft ${d.id}`);
       await loadAll();
       setStatus("Published. It will show on the website within a few minutes.", "ok");
     } catch (e) { setStatus(e.message, "err"); update(); }
   }
   async function reject() {
-    if (!confirm("Reject and delete this draft?")) return;
+    if (!confirm("Reject and delete this draft and its photos?")) return;
     try {
       await deleteFile(conn.engine, d._path, d._sha, `Rejected draft ${d.id}`);
+      await deleteFolder(conn.engine, `data/drafts/${d.id}`, `Rejected draft ${d.id}`);
       await loadAll();
       setStatus("Draft rejected.", "ok");
     } catch (e) { setStatus(e.message, "err"); }
   }
 
-  const people = d.people_quoted.length
+  const quoted = d.people_quoted || [];
+  const people = quoted.length
     ? el("table", {}, el("tr", {}, el("th", { text: "Quoted" }), el("th", { text: "Role" }), el("th", { text: "Treated as" })),
-        d.people_quoted.map((p) => el("tr", {}, el("td", { text: p.name }), el("td", { text: p.role }), el("td", { text: p.treatment }))))
+        quoted.map((p) => el("tr", {}, el("td", { text: p.name }), el("td", { text: p.role }), el("td", { text: p.treatment }))))
     : el("p", { class: "hint", text: "No one is quoted." });
 
   return el("div", {},
@@ -226,11 +396,14 @@ function draftEditor(d) {
     el("label", { text: "Summary (shown on the news card)" }), f.summary,
     el("label", { text: "Article" }), f.body,
     el("p", { class: "hint", text: "Leave a blank line between paragraphs." }),
+    el("label", { text: "Photos" }), photoBox, photoHint, picker, el("div", { class: "btns", style: "margin-top:8px" }, addBtn),
+    el("label", { text: "Wards this story is about (optional, comma separated)" }), f.wards,
+    el("p", { class: "hint", text: "Lets the story appear on those ward pages as well as the main news page. Spell them as on the website: " + WARDS.join(", ") + "." }),
     el("label", { text: "People quoted" }), people,
     el("label", { text: "Original press release title" }), f.sourceTitle,
     el("label", { text: "Original press release date" }), f.sourceDate,
     el("label", { text: "Link to the original on swansea.gov.uk (recommended)" }), f.sourceUrl,
-    el("div", { class: "checks" }, el("strong", { text: "Before publishing, confirm:" }), checkBoxes),
+    el("div", { class: "checks" }, el("strong", { text: "Before publishing, confirm:" }), factChecks, permission),
     el("div", { class: "btns" }, publishBtn, el("button", { class: "secondary", onclick: reject }, "Reject")));
 }
 
@@ -238,20 +411,70 @@ function draftEditor(d) {
 function renderPublished() {
   const root = $("#tab-published"); root.innerHTML = "";
   const list = state.published.data.articles;
-  if (!list.length) { root.append(el("p", { class: "empty", text: "Nothing published yet." })); return; }
+  const rebuild = el("button", { class: "secondary", onclick: async () => {
+    try { await writeSitemap(list); setStatus("Sitemap rebuilt.", "ok"); } catch (e) { setStatus(e.message, "err"); }
+  } }, "Rebuild sitemap");
+  if (!list.length) { root.append(el("p", { class: "empty", text: "Nothing published yet." }), el("div", { class: "btns" }, rebuild)); return; }
   root.append(el("table", {},
-    el("tr", {}, el("th", { text: "Date" }), el("th", { text: "Headline" }), el("th", {})),
-    list.map((a) => el("tr", {},
-      el("td", { text: new Date(a.date).toLocaleDateString("en-GB") }),
-      el("td", { text: a.headline }),
-      el("td", {}, el("button", { class: "secondary", onclick: () => unpublish(a) }, "Unpublish"))))));
+    el("tr", {}, el("th", { text: "Photo" }), el("th", { text: "Date" }), el("th", { text: "Headline" }), el("th", {})),
+    list.map((a) => {
+      const imgs = imagesOf(a);
+      return el("tr", {},
+        el("td", {}, imgs[0] ? el("img", { class: "mini", src: siteUrl(imgs[0].src), alt: imgs[0].alt || "" }) : el("span", { class: "hint", text: "None" })),
+        el("td", { text: new Date(a.date).toLocaleDateString("en-GB") }),
+        el("td", {}, el("a", { href: pageUrlOf(state.config) + "?article=" + encodeURIComponent(a.id), target: "_blank", rel: "noopener", text: a.headline })),
+        el("td", {}, el("div", { class: "btns", style: "margin:0" },
+          el("button", { class: "secondary", onclick: () => addPublishedPhoto(a) }, imgs.length ? "Change lead photo" : "Add photo"),
+          imgs.length ? el("button", { class: "secondary", onclick: () => removePhotos(a) }, "Remove photos") : null,
+          el("button", { class: "secondary", onclick: () => unpublish(a) }, "Unpublish"))));
+    })),
+    el("div", { class: "btns" }, rebuild));
+}
+function addPublishedPhoto(a) {
+  const input = el("input", { type: "file", accept: "image/*" });
+  input.addEventListener("change", async () => {
+    if (!input.files[0]) return;
+    const alt = (prompt("Describe the photo for screen-reader users (required):") || "").trim();
+    if (!alt) { setStatus("Photo not added: a description is required.", "err"); return; }
+    if (!confirm("Do we have permission to publish this photo, and is anyone identifiable in it happy to be pictured?")) return;
+    try {
+      setStatus("Uploading photo…");
+      const r = await resizePhoto(input.files[0]);
+      const src = `images/${a.id}/${Date.now().toString(36)}.jpg`;
+      await writeB64(conn.site, src, r.b64, `Photo for ${a.id}`);
+      const fresh = await readJson(conn.site, "articles.json");
+      fresh.data.articles = fresh.data.articles.map((x) => {
+        if (x.id !== a.id) return x;
+        const { image, imageAlt, ...rest } = x;
+        return { ...rest, updated: new Date().toISOString(), images: [{ src, alt, caption: "", credit: "", width: r.width, height: r.height }, ...imagesOf(x).slice(1)] };
+      });
+      await writeSite(fresh.data, fresh.sha, `Photo for: ${a.headline}`);
+      await loadAll();
+      setStatus("Photo added. It will show on the website within a few minutes.", "ok");
+    } catch (e) { setStatus(e.message, "err"); }
+  });
+  input.click();
+}
+async function removePhotos(a) {
+  if (!confirm(`Remove all photos from "${a.headline}"? It will show the red Swansea Labour panel instead.`)) return;
+  try {
+    const fresh = await readJson(conn.site, "articles.json");
+    fresh.data.articles = fresh.data.articles.map((x) => {
+      if (x.id !== a.id) return x;
+      const { image, imageAlt, ...rest } = x;
+      return { ...rest, updated: new Date().toISOString(), images: [] };
+    });
+    await writeSite(fresh.data, fresh.sha, `Remove photos: ${a.headline}`);
+    await loadAll();
+    setStatus("Photos removed.", "ok");
+  } catch (e) { setStatus(e.message, "err"); }
 }
 async function unpublish(a) {
   if (!confirm(`Remove "${a.headline}" from the website?`)) return;
   try {
     const fresh = await readJson(conn.site, "articles.json");
     fresh.data.articles = fresh.data.articles.filter((x) => x.id !== a.id);
-    await writeJson(conn.site, "articles.json", fresh.data, fresh.sha, `Unpublish: ${a.headline}`);
+    await writeSite(fresh.data, fresh.sha, `Unpublish: ${a.headline}`);
     await loadAll();
     setStatus("Removed from the website.", "ok");
   } catch (e) { setStatus(e.message, "err"); }
@@ -262,27 +485,30 @@ function renderSettings() {
   const root = $("#tab-settings"); root.innerHTML = "";
   const c = state.config.data;
   const f = {
-    imprint: el("textarea", { placeholder: "Promoted by [name] on behalf of Swansea Labour, both at [address]." }, c.imprint),
-    councillors: el("textarea", {}, c.labourCouncillors.join("\n")),
-    councilDescription: el("input", { type: "text", value: c.councilDescription }),
-    styleNotes: el("textarea", {}, c.styleNotes),
-    driveInboxFolderId: el("input", { type: "text", value: c.driveInboxFolderId }),
+    imprint: el("textarea", { placeholder: "Promoted by [name] on behalf of Swansea Labour, both at [address]." }, c.imprint || ""),
+    pageUrl: el("input", { type: "url", value: c.pageUrl || DEFAULT_PAGE_URL }),
+    councillors: el("textarea", {}, (c.labourCouncillors || []).join("\n")),
+    councilDescription: el("input", { type: "text", value: c.councilDescription || "" }),
+    styleNotes: el("textarea", {}, c.styleNotes || ""),
+    driveInboxFolderId: el("input", { type: "text", value: c.driveInboxFolderId || "" }),
   };
   async function save() {
     try {
-      const fresh = await readJson(conn.engine, "config.json");
+      const fresh = await readJson(conn.engine, "config.json") || { data: {} };
       const next = {
         ...fresh.data,
         imprint: f.imprint.value.trim(),
+        pageUrl: f.pageUrl.value.trim().replace(/\/+$/, ""),
         labourCouncillors: f.councillors.value.split("\n").map((s) => s.trim()).filter(Boolean),
         councilDescription: f.councilDescription.value.trim(),
         styleNotes: f.styleNotes.value.trim(),
         driveInboxFolderId: f.driveInboxFolderId.value.trim(),
       };
       await writeJson(conn.engine, "config.json", next, fresh.sha, "Update settings");
+      state.config = { data: next, sha: undefined };
       const site = await readJson(conn.site, "articles.json");
-      if (site && site.data.imprint !== next.imprint) {
-        await writeJson(conn.site, "articles.json", { ...site.data, imprint: next.imprint }, site.sha, "Update imprint");
+      if (site && (site.data.imprint !== next.imprint || site.data.pageUrl !== next.pageUrl)) {
+        await writeSite({ ...site.data, imprint: next.imprint }, site.sha, "Update imprint and page address");
       }
       await loadAll();
       setStatus("Settings saved.", "ok");
@@ -290,7 +516,9 @@ function renderSettings() {
   }
   root.append(
     el("label", { text: "Digital imprint" }), f.imprint,
-    el("p", { class: "hint", text: "Shown under every article and the news reel. Publishing stays off until this is filled in." }),
+    el("p", { class: "hint", text: "Shown under every article and the news reel. Publishing stays off until this is filled in properly." }),
+    el("label", { text: "Website page that shows the news reel" }), f.pageUrl,
+    el("p", { class: "hint", text: "Used to build the links Google is given for each article, e.g. https://www.swansealabour.org/news" }),
     el("label", { text: "Labour councillors (one per line, e.g. \"Cllr Jane Jones, Cabinet Member for Education\")" }), f.councillors,
     el("p", { class: "hint", text: "Only these people are quoted as Labour without a check." }),
     el("label", { text: "How to describe the council" }), f.councilDescription,
