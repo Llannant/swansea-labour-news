@@ -1,0 +1,1390 @@
+{
+  "updated": "2026-10-08",
+  "wards": [
+    {
+      "name": "Bôn-y-maen",
+      "slug": "bonymaen",
+      "page": "/bonymaen",
+      "pledgeHeading": "Our Pledges",
+      "pledges": [
+        {
+          "title": "A Safer community",
+          "detail": "We will work with residents, the police & other organisation to tackle crime and antisocial behaviour and make our community safer",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "A Cleaner community",
+          "detail": "We will employ an operative to help keep our streets clean by clearing litter, removing weeds and undertaking minor works. We will also work to deal with fly tipping quickly and we will install new bins across Bonymaen ward",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Investment in park and play",
+          "detail": "We will continue to invest in our parks and play areas across the ward & work with Swansea Labour council to deliver the new indoor training barn to be built at Cefn Hengoed school",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Greener community",
+          "detail": "We will continue to fund flower displays and wildflower planting schemes and protect green areas to make the ward a community to be proud of",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Supporting Local Groups",
+          "detail": "We will help support local community groups, sports clubs and schools and continue to support residents and the Eastside Foodbank",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        }
+      ],
+      "councillors": [
+        {
+          "name": "Mandy Evans",
+          "role": "",
+          "phone": "07949751456",
+          "email": "cllr.mandy.evans@swansea.gov.uk",
+          "photo": "images/councillors/mandy-evans.jpg",
+          "bio": []
+        },
+        {
+          "name": "Paul Lloyd",
+          "role": "",
+          "phone": "07789167128",
+          "email": "cllr.paul.lloyd@swansea.gov.uk",
+          "photo": "images/councillors/paul-lloyd.jpg",
+          "bio": []
+        }
+      ],
+      "documents": [
+        {
+          "title": "Election Address",
+          "url": "https://www.swansealabour.org/s/Bonymaen-Election-Address-Final.pdf"
+        }
+      ]
+    },
+    {
+      "name": "Castle",
+      "slug": "castle",
+      "page": "/castle",
+      "pledgeHeading": "Our Pledges",
+      "pledges": [
+        {
+          "title": "Cleaner Communities",
+          "detail": "Work hard in partnership with residents to keep our streets clean.",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Keeping Our Streets Clear",
+          "detail": "Ensure prompt action on overgrowth and other street scene problems.",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Investing in Parks and Green Spaces",
+          "detail": "Support green spaces, including more play equipment and wild flowers.",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Supporting residents and local groups",
+          "detail": "We will support and promote arts, culture, and heritage for all.",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "A Safer Ward",
+          "detail": "Work with all agencies to improve community safety, and seek to ensure that police practice reflects and respects community needs.",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        }
+      ],
+      "councillors": [
+        {
+          "name": "Patience Bentu",
+          "role": "",
+          "phone": "07530729429",
+          "email": "cllr.patience.bentu@swansea.gov.uk",
+          "photo": "images/councillors/patience-bentu.jpg",
+          "bio": []
+        },
+        {
+          "name": "Fiona Gordon",
+          "role": "",
+          "phone": "07859090707",
+          "email": "cllr.fiona.gordon@swansea.gov.uk",
+          "photo": "images/councillors/fiona-gordon.jpg",
+          "bio": []
+        },
+        {
+          "name": "Hannah Lawson",
+          "role": "",
+          "phone": "07727081778",
+          "email": "cllr.hannah.lawson@swansea.gov.uk",
+          "photo": "images/councillors/hannah-lawson.jpg",
+          "bio": []
+        },
+        {
+          "name": "David Phillips",
+          "role": "",
+          "phone": "01792646004",
+          "email": "cllr.david.phillips@swansea.gov.uk",
+          "photo": "images/councillors/david-phillips.jpg",
+          "bio": []
+        }
+      ],
+      "documents": [
+        {
+          "title": "Election Address",
+          "url": "https://www.swansealabour.org/s/Castle-Election-Address-updated.pdf"
+        }
+      ]
+    },
+    {
+      "name": "Cockett",
+      "slug": "cockett",
+      "page": "/cockett",
+      "pledgeHeading": "Our Pledges",
+      "pledges": [
+        {
+          "title": "Create a stronger economy",
+          "detail": "A better city centre with jobs in our communities",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Deliver better care",
+          "detail": "Improved services for our most vulnerable children and adults",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Tackle climate change",
+          "detail": "A cleaner and greener environment",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Safer communities",
+          "detail": "Reducing anti-social and criminal behaviour",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Protect community facilities",
+          "detail": "Improved parks, playgrounds, schools and community centres",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Working for you",
+          "detail": "As a team of councillors, we will be accessible to all residents and listen to the communities we represent to ensure your voice is heard",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        }
+      ],
+      "councillors": [
+        {
+          "name": "Mike Durke",
+          "role": "",
+          "phone": "07973417710",
+          "email": "cllr.mike.durke@swansea.gov.uk",
+          "photo": "images/councillors/mike-durke.jpg",
+          "bio": []
+        },
+        {
+          "name": "Elliott King",
+          "role": "",
+          "phone": "07739705065",
+          "email": "cllr.elliott.king@swansea.gov.uk",
+          "photo": "images/councillors/elliott-king.jpg",
+          "bio": []
+        },
+        {
+          "name": "Oliver James",
+          "role": "",
+          "phone": "07851727132",
+          "email": "cllr.oliver.james@swansea.gov.uk",
+          "photo": "images/councillors/oliver-james.jpg",
+          "bio": []
+        }
+      ],
+      "documents": [
+        {
+          "title": "Election Address",
+          "url": "https://www.swansealabour.org/s/Cockett-Election-Address.pdf"
+        }
+      ]
+    },
+    {
+      "name": "Dunvant & Killay",
+      "slug": "dunvant-killay",
+      "page": "/dunvant-killay",
+      "pledgeHeading": "Our Pledges",
+      "pledges": [
+        {
+          "title": "Invest in our community",
+          "detail": "Support the people and places that make our community great like our parks, our library and voluntary groups across Dunvant and Killay",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Keep our streets clean & improve our environment",
+          "detail": "Take action on litter, dog fouling, fly tipping and problems with flooding. Plant trees, wildflowers and daffodils",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Address community safety concerns",
+          "detail": "Work with the police and Council to promote road safety, reduce speeding and tackle anti-social behaviour",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Support and value our local schools",
+          "detail": "Serve as school governors, invest in school facilities and recognise the important role schools play in our communities",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Be visible, responsive and accessible to all residents",
+          "detail": "Keep you all up to date with regular surgeries, newsletters and community events",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        }
+      ],
+      "councillors": [
+        {
+          "name": "Louise Gibbard",
+          "role": "",
+          "phone": "07413081102",
+          "email": "cllr.louise.gibbard@swansea.gov.uk",
+          "photo": "images/councillors/louise-gibbard.jpg",
+          "bio": [
+            "It's been a real honour and privilege to serve as a councillor for Dunvant since 2017, and for the whole of Dunvant and Killay since 2022.",
+            "Hopefully, lots of you will know me already; I’m a governor at both Pen Y Fro and Dunvant Primary Schools, Secretary of the Friends of Dunvant Park, have organised lots of community events and I’m a regular litter picker across the area. Away from the ward, I’m the Chair of STOPP (Swansea Takes On Period Poverty), an active member of Unite Community Swansea branch and Joint Cabinet Member for Supporting Communities involved in making Council decisions around things like equalities and human rights, tackling domestic abuse and our community facilities across Swansea.",
+            "I’m passionate about public service, and doing my bit to represent local people and working with you to make improvements to our lovely area."
+          ]
+        }
+      ],
+      "documents": []
+    },
+    {
+      "name": "Gorseinon & Penyrheol",
+      "slug": "gorseinon-penyrheol",
+      "page": "/gorseinon-penyrheol",
+      "pledgeHeading": "Our Pledges",
+      "pledges": [
+        {
+          "title": "Health and Wellbeing",
+          "detail": "Protect and improve our fantastic parks and play areas and work to improve the sports facilities in our area.",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Safety",
+          "detail": "Work with outside bodies to tackle anti-social behaviour and bring back CCTV at key locations throughout the area.",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Community",
+          "detail": "Introduce a dedicated local cleansing operative to ensure our streets and parks are kept clean and tidy.",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Supporting Local",
+          "detail": "Continue our work supporting small businesses, enhance our local district shopping centre and introduce free community Wi-Fi.",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Public Transport",
+          "detail": "Work toward an integrated public transport system including improved walking and cycling routes.",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        }
+      ],
+      "councillors": [
+        {
+          "name": "Andrew Stevens",
+          "role": "",
+          "phone": "+447973712852",
+          "email": "cllr.andrew.stevens@swansea.gov.uk",
+          "photo": "images/councillors/andrew-stevens.jpg",
+          "bio": []
+        },
+        {
+          "name": "Jan Curtice",
+          "role": "",
+          "phone": "+447841580604",
+          "email": "cllr.jan.curtice@swansea.gov.uk",
+          "photo": "images/councillors/jan-curtice.jpg",
+          "bio": []
+        },
+        {
+          "name": "Nicola Matthews",
+          "role": "",
+          "phone": "07813096106",
+          "email": "cllr.nicola.matthews@swansea.gov.uk",
+          "photo": "images/councillors/nicola-matthews.jpg",
+          "bio": []
+        }
+      ],
+      "documents": [
+        {
+          "title": "Gorseinon Town Council by-election",
+          "url": "https://www.swansealabour.org/s/Copy-of-FINAL-Print-Edition-Katie-Jones-PTC-By-Election-A4-DL-Election-Address-3.pdf"
+        },
+        {
+          "title": "Newsletter 2021",
+          "url": "https://www.swansealabour.org/s/Penyrheol-Gorseinon-Autumn-2021.pdf"
+        },
+        {
+          "title": "Election Address",
+          "url": "https://www.swansealabour.org/s/Gorseinon-Penyrheol-Election-Address-Update-1.pdf"
+        },
+        {
+          "title": "Newsletter 2022",
+          "url": "https://www.swansealabour.org/s/Gorseinon-and-Penyrheol-Budget.pdf"
+        }
+      ]
+    },
+    {
+      "name": "Gowerton",
+      "slug": "gowerton",
+      "page": "/gowerton",
+      "pledgeHeading": "My Pledges",
+      "pledges": [
+        {
+          "title": "Traffic And Clean Air Improvement",
+          "detail": "Innovative traffic and clean air solutions, championing pedestrian road crossing opportunities",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Invest & Support In Gowerton’s Teenagers",
+          "detail": "Assisting sports clubs, with safe Youth meeting areas and smart benches (with charging ports)",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Security & Safety",
+          "detail": "Introduction of “Gowerton Guardians” reporting on safety concerns, criminal activity, anti-social behaviour",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Organising Open Space",
+          "detail": "Endorsing the outdoors, surrounding woodland, cycle track safety, smart dog bins, and additional benches across Gowerton",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Community & Charity Event Funding",
+          "detail": "Proactively supporting all faiths, churches & community organisations. Community events such as a Christmas Quiz, Family Easter Egg Treasure Hunt. Feasibility study into a “Varsity Style Day’ between Gowerton & Waunarlwydd",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        }
+      ],
+      "councillors": [
+        {
+          "name": "Dai Jenkins",
+          "role": "",
+          "phone": "07954426080",
+          "email": "cllr.dai.jenkins@swansea.gov.uk",
+          "photo": "images/councillors/dai-jenkins.jpg",
+          "bio": [
+            "My name is Dai Jenkins and I am excited to be standing in May’s elections as one of the Labour candidates in Gowerton ward.",
+            "I live 500 metres from the stream that separates Waunarlwydd from Gowerton and am the fourth generation to live in Waunarlwydd. I have always loved being involved in my local community. I am a member of Waunarlwydd RFC and am one of the organisers of the Waunarlwydd Carnival, which raised around 5K (pre Covid) each year for charity. Married to Michelle for 30 years our daughter Laura-May is a Nurse and our youngest daughter Beth qualifies as a Midwife come July this year. Both Laura and Beth attended Ysgol Gyfun Gwyr.",
+            "Over the last 41 years I have worked for B.T and have been a Labour Party member for 30 years. Currently I am a full time Union Officer of the South Wales Branch of the Communication Workers Union.",
+            "In 2021 I was active in the “Climate- Change” day of action in Swansea- spoke in Castle square against fire and re-hire contracts, spoke and supported May day’s international workers rally and spoke at “Youth for Jobs” event."
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "title": "Election Address",
+          "url": "https://www.swansealabour.org/s/Gowerton-Election-Address-final.pdf"
+        }
+      ]
+    },
+    {
+      "name": "Landore",
+      "slug": "landore",
+      "page": "/landore",
+      "pledgeHeading": "Our Pledges",
+      "pledges": [
+        {
+          "title": "Investing in better streets",
+          "detail": "We will continue to support a rolling programme to resurface pavements and roads across Landore Ward",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Safer communities",
+          "detail": "We will continue to work with the Police, & our PCSO’s to tackle anti social behaviour and make our streets safer. We will support local Community Groups across Landore Ward",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Cleaner communities",
+          "detail": "We will fund a local operative to keep our streets clean by clearing litter and weeds and work to deal quickly any fly tipping problems. We will also install new bins in the ward",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Investing in parks and play",
+          "detail": "We will continue to invest and improve our local parks and play facilities, and continue with tree planting in appropriate areas to improve our environment",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Standing up for Landore",
+          "detail": "We will be accessible to all residents and continue to speak up for the community we represent to ensure your voice is always heard",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        }
+      ],
+      "councillors": [
+        {
+          "name": "Beverley Hopkins",
+          "role": "",
+          "phone": "01792655956",
+          "email": "cllr.bev.hopkins@swansea.gov.uk",
+          "photo": "images/councillors/beverley-hopkins.jpg",
+          "bio": []
+        },
+        {
+          "name": "Mike White",
+          "role": "",
+          "phone": "01792643354",
+          "email": "cllr.mike.white@swansea.gov.uk",
+          "photo": "images/councillors/mike-white.jpg",
+          "bio": []
+        }
+      ],
+      "documents": [
+        {
+          "title": "Election Address",
+          "url": "https://www.swansealabour.org/s/Landore-Election-Address-updated.pdf"
+        }
+      ]
+    },
+    {
+      "name": "Llansamlet",
+      "slug": "llansamlet",
+      "page": "/llansamlet",
+      "pledgeHeading": "Our Pledges",
+      "pledges": [
+        {
+          "title": "Parks and Play Equipment",
+          "detail": "To invest in our park's and outdoor facilities within the ward",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Tackle Food Poverty",
+          "detail": "Carry on with our work to tackle food poverty and support the most vulnerable in our community",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "A Green and Clean Llansamlet",
+          "detail": "To continue enhancing our environment and to tackle fly tipping, dog fouling and littering",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Active travel",
+          "detail": "Explore and aim to deliver more active travel routes throughout the ward",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Taking on anti-social behaviour",
+          "detail": "To work with local groups and organisations to tackle anti social behaviour within the Llansamlet ward",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        }
+      ],
+      "councillors": [
+        {
+          "name": "Ryland Doyle",
+          "role": "",
+          "phone": "07855034215",
+          "email": "cllr.ryland.doyle@swansea.gov.uk",
+          "photo": "images/councillors/ryland-doyle.jpg",
+          "bio": []
+        },
+        {
+          "name": "Matthew Jones",
+          "role": "",
+          "phone": "07890662714",
+          "email": "cllr.matthew.jones@swansea.gov.uk",
+          "photo": "images/councillors/matthew-jones.jpg",
+          "bio": []
+        },
+        {
+          "name": "Penny Matthews",
+          "role": "",
+          "phone": "01792795666",
+          "email": "cllr.penny.matthews@swansea.gov.uk",
+          "photo": "images/councillors/penny-matthews.jpg",
+          "bio": []
+        },
+        {
+          "name": "Alyson Anthony",
+          "role": "",
+          "phone": "07988666179",
+          "email": "cllr.alyson.anthony@swansea.gov.uk",
+          "photo": "images/councillors/alyson-anthony.jpg",
+          "bio": []
+        }
+      ],
+      "documents": [
+        {
+          "title": "Election Address",
+          "url": "https://www.swansealabour.org/s/Llansamlet-Election-Address-Final.pdf"
+        }
+      ]
+    },
+    {
+      "name": "Llwchwr",
+      "slug": "llwchwr",
+      "page": "/llwchwr",
+      "pledgeHeading": "Our Pledges",
+      "pledges": [
+        {
+          "title": "Keeping our area tidy",
+          "detail": "Introduce a dedicated operative for Llwchwr to keep the ward clean and tidy",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Bringing our community together",
+          "detail": "Provide a programme of events and activities across Llwchwr throughout the year",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Play equipment and Parks",
+          "detail": "New and upgraded children's play areas in Garden Village, Kingsbridge and Loughor, making play equipment more accessible and appropriate for all ages",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Managing waste",
+          "detail": "Review the placement of current waste bins across the ward and target hot spot areas",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Standing up for Llwchwr",
+          "detail": "We will hold monthly surgeries and regular street surgeries to keep in touch with local residents",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        }
+      ],
+      "councillors": [
+        {
+          "name": "Robert Smith",
+          "role": "",
+          "phone": "07896486726",
+          "email": "cllr.robert.smith@swansea.gov.uk",
+          "photo": "images/councillors/robert-smith.jpg",
+          "bio": [
+            "Robert is an experienced Town and County Councillor and governor of two local schools. A graduate of Swansea University where he gained a BA and then a PhD, Robert worked for the University of Wales and then as Head of Evaluation in Wales for an educational organisation.",
+            "Mae Robert yn gynghorydd profiadol iawn sydd wedi gwasanaethu ar y Cyngor Tref a’r Cyngor Sir ac fel llywodraethwr ar ddwy ysgol. Yn raddedig o Brifysgol Abertawe, gweithiodd i Brifysgol Cymru ac fel Pennaeth Gwerthuso yng Nghymru ar gyfer sefydliad addysgol yn y DG."
+          ]
+        },
+        {
+          "name": "Kelly Roberts",
+          "role": "",
+          "phone": "07791832172",
+          "email": "cllr.kelly.roberts@swansea.gov.uk",
+          "photo": "images/councillors/kelly-roberts.jpg",
+          "bio": [
+            "Kelly is a public policy lecturer at Swansea University with a degree in social policy followed by a masters and recently submitted her PhD. Since becoming a Town Councillor in 2015 and County Councillor in 2017, she has worked tirelessly for her locality and is honoured to represent residents on local issues.",
+            "Mae Kelly yn ddarlithydd mewn polisi cyhoeddus ym Mhrifysgol Abertawe. Mae ganddi radd mewn polisi cymdeithasol a gradd meistr ac yn ddiweddar cyflwynodd ei thraethawd PhD. Ers dod yn Gynghorydd Tref yn 2015 a Chynghorydd Sir yn 2017, gweithiodd yn ddiflino dros ei chymuned ac mae'n ei ystyried yn anrhydedd i gynrychioli trigolion ar faterion lleol"
+          ]
+        },
+        {
+          "name": "Adam Davis",
+          "role": "",
+          "phone": "07949027860",
+          "email": "cllr.adam.davis@swansea.gov.uk",
+          "photo": "images/councillors/adam-davis.jpg",
+          "bio": [
+            "Adam is an active campaigner and Town Councillor. He studied for his A Levels at Gorseinon College before graduating from Swansea University in 2014 and has experience working in political campaigning and communications.",
+            "Mae Adam yn ymgyrchydd gweithgar ar garreg y drws ac yn Gynghorwr Tref. Astudiodd ar gyfer ei Lefel A yng Ngholeg Gorseinon cyn graddio o Brifysgol Abertawe yn 2014 ac mae ganddo brofiad o weithio ym maes ymgyrchu a chyfathrebu gwleidyddol."
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "title": "Newsletter",
+          "url": "https://www.swansealabour.org/s/Llwchwr-Budget-Leaflet.pdf"
+        },
+        {
+          "title": "Election Address",
+          "url": "https://www.swansealabour.org/s/Llwchwr-Election-Address-Final.pdf"
+        }
+      ]
+    },
+    {
+      "name": "Morriston",
+      "slug": "morriston",
+      "page": "/morriston",
+      "pledgeHeading": "Our Pledges",
+      "pledges": [
+        {
+          "title": "Invest in our parks and play areas",
+          "detail": "Including Morriston, Ynystawe, Cwmrhydycierw and Parc Gwernfadog",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Fund more defibrillators across Morriston",
+          "detail": "Install them in more locations to save lives",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Fund events and flower displays",
+          "detail": "We will fund flower display and deliver community events such as the Christmas parade and the summer festivals",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Invest in our community",
+          "detail": "We will support our local businesses and invest over £2m to regenerate Woodfield Street",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Helping with recovery from the pandemic",
+          "detail": "We will provide grants for community groups, local schools and sport clubs",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        }
+      ],
+      "councillors": [
+        {
+          "name": "Ceri Evans",
+          "role": "",
+          "phone": "07971485688",
+          "email": "cllr.ceri.evans@swansea.gov.uk",
+          "photo": "images/councillors/ceri-evans.jpg",
+          "bio": []
+        },
+        {
+          "name": "Rebecca Francis-Davies",
+          "role": "",
+          "phone": "07757084956",
+          "email": "cllr.rebecca.francis-davies@swansea.gov.uk",
+          "photo": "images/councillors/rebecca-francis-davies.jpg",
+          "bio": []
+        },
+        {
+          "name": "Yvonne Jardine",
+          "role": "",
+          "phone": "07918656753",
+          "email": "cllr.yvonne.jardine@swansea.gov.uk",
+          "photo": "images/councillors/yvonne-jardine.jpg",
+          "bio": []
+        },
+        {
+          "name": "Andrea Harrington",
+          "role": "",
+          "phone": "07584670061",
+          "email": "cllr.andrea.harrington@swansea.gov.uk",
+          "photo": "images/councillors/andrea-harrington.jpg",
+          "bio": []
+        },
+        {
+          "name": "Rob Stewart",
+          "role": "",
+          "phone": "07717840837",
+          "email": "cllr.rob.stewart@swansea.gov.uk",
+          "photo": "images/councillors/rob-stewart.jpg",
+          "bio": []
+        }
+      ],
+      "documents": [
+        {
+          "title": "Election Address",
+          "url": "https://www.swansealabour.org/s/Morriston-Election-Address-Final.pdf"
+        }
+      ]
+    },
+    {
+      "name": "Mynyddbach",
+      "slug": "mynyddbach",
+      "page": "/mynyddbach",
+      "pledgeHeading": "Our Pledges",
+      "pledges": [
+        {
+          "title": "Fund Local Parks",
+          "detail": "We have invested in the creation of Hollett Park and Knoyle Park. We also funded the refurbishment of Rheidol Park. We will continue to contribute towards play equipment across the ward",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Safer Community",
+          "detail": "We have funded defibrillators across the ward to improve the safety of residents. We will work with police to tackle antisocial behaviour",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Support Local Schools",
+          "detail": "We have donated to projects at Bishop Vaughan, Clase, Gwyrosydd and Pen Y Bryn. We welcomed the construction of a new local school. We will continue to be active and involved in our local schools",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Cleaner Community",
+          "detail": "We have placed several litter and dog bins across Mynyddbach. We will continue to promptly remove litter, fly tipping and keep our streets clean",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Council Housing",
+          "detail": "We will continue to support council house building and press for retro fitting of solar panels to existing council properties",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        }
+      ],
+      "councillors": [
+        {
+          "name": "Mike Lewis",
+          "role": "",
+          "phone": "07817668864",
+          "email": "cllr.mike.lewis@swansea.gov.uk",
+          "photo": "images/councillors/mike-lewis.jpg",
+          "bio": []
+        },
+        {
+          "name": "Sam Pritchard",
+          "role": "",
+          "phone": "07507511095",
+          "email": "cllr.sam.pritchard@swansea.gov.uk",
+          "photo": "images/councillors/sam-pritchard.jpg",
+          "bio": []
+        },
+        {
+          "name": "Jess Pritchard",
+          "role": "",
+          "phone": "07931733366",
+          "email": "cllr.jess.pritchard@swansea.gov.uk",
+          "photo": "images/councillors/jess-pritchard.jpg",
+          "bio": []
+        }
+      ],
+      "documents": [
+        {
+          "title": "Newsletter",
+          "url": "https://www.swansealabour.org/s/Mynyddbach-budget.pdf"
+        }
+      ]
+    },
+    {
+      "name": "Penclawdd",
+      "slug": "penclawdd",
+      "page": "/penclawdd",
+      "pledgeHeading": "My Pledges",
+      "pledges": [
+        {
+          "title": "Working for you",
+          "detail": "I pledge to continue the work for the community that Mark Thomas and the Labour Party have been doing",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Parks and Play Equipment",
+          "detail": "I pledge to work to improve the play grounds in both Penclawdd and Crofty",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Improving facilities",
+          "detail": "I pledge to work alongside our sports and cultural groups to help them improve facilities",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "A clean community",
+          "detail": "I pledge to continue the work I started last summer keeping our villages as litter free and clean as possible",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Standing up for Penclawdd",
+          "detail": "I pledge to be accessible to all in the community who want to communicate with me",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        }
+      ],
+      "councillors": [
+        {
+          "name": "Andrew Williams",
+          "role": "",
+          "phone": "07450560280",
+          "email": "cllr.andrew.williams@swansea.gov.uk",
+          "photo": "images/councillors/andrew-williams.jpg",
+          "bio": []
+        }
+      ],
+      "documents": [
+        {
+          "title": "Newsletter",
+          "url": "https://www.swansealabour.org/s/Penclawdd-Ward-Budget-Leaflet.pdf"
+        }
+      ]
+    },
+    {
+      "name": "Penderry",
+      "slug": "penderry",
+      "page": "/penderry",
+      "pledgeHeading": "Our Pledges",
+      "pledges": [
+        {
+          "title": "Cleaner Communities",
+          "detail": "We will fund an operative to help keep our streets clean by clearing litter, removing weeds and undertaking minor works. We will install new bins at suitable locations across Penderry ward",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Investing in our local shops",
+          "detail": "We will support local businesses with grants of up to £10,000 and help improve, regreen, and refurbish our local shopping areas",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Investing in Parks and Play",
+          "detail": "We will continue to invest in our parks and play areas, and create new sports facilities for local clubs to use at Clywd School",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Supporting residents and local groups",
+          "detail": "We will work with charities and organisation to support residents who are facing poverty and have been hit by the cost of living crisis",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Better housing",
+          "detail": "We will work with Swansea Labour council to continue to invest in our council homes and also continue to build new energy efficient homes in Penderry for residents",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        }
+      ],
+      "councillors": [
+        {
+          "name": "Terry Hennegan",
+          "role": "",
+          "phone": "07565769321",
+          "email": "cllr.terry.hennegan@swansea.gov.uk",
+          "photo": "images/councillors/terry-hennegan.jpg",
+          "bio": []
+        },
+        {
+          "name": "Mair Baker",
+          "role": "",
+          "phone": "07745366764",
+          "email": "cllr.mair.baker@swansea.gov.uk",
+          "photo": "",
+          "bio": []
+        },
+        {
+          "name": "Erika Kirchner",
+          "role": "",
+          "phone": "07974145304",
+          "email": "cllr.erika.kirchner@swansea.gov.uk",
+          "photo": "images/councillors/erika-kirchner.jpg",
+          "bio": []
+        }
+      ],
+      "documents": [
+        {
+          "title": "Election Address",
+          "url": "https://www.swansealabour.org/s/Penderry-Election-Address-Final.pdf"
+        }
+      ]
+    },
+    {
+      "name": "Pontarddulais",
+      "slug": "pontarddulais",
+      "page": "/pontarddulais",
+      "pledgeHeading": "My Pledges",
+      "pledges": [
+        {
+          "title": "Parks and Play",
+          "detail": "We will provide safe spaces for our children and young people to socialise and play and maintain the ecology in our Park",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Supporting Our Community",
+          "detail": "We will continue to develop Pontarddulais Area Food Bank, preventing food poverty",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Increase the supply of Affordable Housing",
+          "detail": "We will lobby Social Housing providers to consider Pontarddulais for more affordable and social housing",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Building Safer Communities",
+          "detail": "We will continue to work with the Police and residents to tackle speeding and anti-social behaviour in the town",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Social Care",
+          "detail": "We will continue working with the Manager of The Hollies to ensure first class service delivery and staff retention",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        }
+      ],
+      "councillors": [
+        {
+          "name": "Philip Downing",
+          "role": "",
+          "phone": "07929377157",
+          "email": "cllr.philip.downing@swansea.gov.uk",
+          "photo": "images/councillors/philip-downing.jpg",
+          "bio": []
+        }
+      ],
+      "documents": [
+        {
+          "title": "Election Address",
+          "url": "https://www.swansealabour.org/s/Pontarddulais-Election-Address.pdf"
+        }
+      ]
+    },
+    {
+      "name": "Pontlliw & Tircoed",
+      "slug": "pontlliw-tircoed",
+      "page": "/pontlliw-tircoed",
+      "pledgeHeading": "My Pledges",
+      "pledges": [
+        {
+          "title": "Standing up for Pontlliw & Tircoed",
+          "detail": "As your Councillor I will be accessible to all residents and listen to the Community I represent to ensure your voice is heard",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "A community to be proud of",
+          "detail": "I will work hard to ensure the ward continues to look cared for and is a place to be proud of",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Keeping our streets clean",
+          "detail": "Introduce a dedicated local operative to help ensure our streets and parks are clean and tidy",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "A safer community",
+          "detail": "Work closely with the police and other agencies to help make our communities safer and welcoming for everyone",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Parks and play equipment",
+          "detail": "Seek investment in our parks and play areas.",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        }
+      ],
+      "councillors": [
+        {
+          "name": "Victoria Holland",
+          "role": "",
+          "phone": "07847228819",
+          "email": "cllr.victoria.holland@swansea.gov.uk",
+          "photo": "images/councillors/victoria-holland.jpg",
+          "bio": []
+        }
+      ],
+      "documents": [
+        {
+          "title": "Election Address",
+          "url": "https://www.swansealabour.org/s/Pontlliw-Tircoed-Election-Address-final.pdf"
+        }
+      ]
+    },
+    {
+      "name": "St Thomas",
+      "slug": "st-thomas",
+      "page": "/st-thomas",
+      "pledgeHeading": "My Pledges",
+      "pledges": [
+        {
+          "title": "Standing up for St Thomas",
+          "detail": "I will work with Welsh Water to address issues and reach a solution regarding the pollution from the sewage treatment works.",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Safer communities",
+          "detail": "I will work with the police and other organisations to tackle anti-social behaviour and crime within St Thomas and the Eastside Community",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Investing in our parks and play area",
+          "detail": "I will continue to invest and deliver improvements to our parks and green spaces across St Thomas Ward. We will commit to enclose Monkey Park in Port Tennant",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Protecting bus services",
+          "detail": "I will work to lobby First Cymru for improvement across the Eastside Community and work with the Labour Council and Welsh Government to ensure St Thomas benefits from the new metro developments",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Parking for Residents",
+          "detail": "I will work to introduce zoned parking for additional areas within the Ward, protecting parking for residents",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Cleaner communities",
+          "detail": "I will fund a dedicated operative to clear litter, remove weeds, and keep our streets clean. We will also install new bins across the ward",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        }
+      ],
+      "councillors": [
+        {
+          "name": "Hayley Gwilliam",
+          "role": "",
+          "phone": "07916583188",
+          "email": "cllr.hayley.gwilliam@swansea.gov.uk",
+          "photo": "images/councillors/hayley-gwilliam.jpg",
+          "bio": []
+        }
+      ],
+      "documents": []
+    },
+    {
+      "name": "Townhill",
+      "slug": "townhill",
+      "page": "/townhill",
+      "pledgeHeading": "Our Pledges",
+      "pledges": [
+        {
+          "title": "Better Housing",
+          "detail": "Continue to work closely with the district housing office staff to ensure that we improve our council stock further to all the upgrades made in achieving the Welsh Housing Quality Standard",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "A Safer Community",
+          "detail": "Build on the good working relationship we now have with the local police and PCSOs",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Carry on being available all year round",
+          "detail": "To help sort out resident’s concerns, by phone, email, Facebook, face to face and regular Street Surgeries",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "A Safer Community",
+          "detail": "Help out with both community litter picks and those we organise ourselves to encourage others to care more about the environment",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Standing up for Townhill",
+          "detail": "Be there to represent the ward and stand up for our residents whenever we take part attending councils meetings",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        }
+      ],
+      "councillors": [
+        {
+          "name": "Cyril Anderson",
+          "role": "",
+          "phone": "01792526489",
+          "email": "cllr.cyril.anderson@swansea.gov.uk",
+          "photo": "images/councillors/cyril-anderson.jpg",
+          "bio": [
+            "Cyril, elected May 2015, is Swansea born & bred with strong roots in the ward. He is a school governor on both Seaview & Townhill primary schools, and he works closely with community & charity groups, and is very vocal when it comes to speaking out on behalf of local Issues.",
+            "He is very keen on providing opportunities for children, such as the new play areas that have been constructed at Mayhill Park. But he is equally keen to help support the elderly and the vulnerable, and has always been actively involved in TOPIC House, the Older People's Information Centre.",
+            "He chairs the Economy, Environment & Infrastructure Policy Development Committee which helps to achieve the aims of the council.",
+            "Cyril has been an activist in the Labour Party for well over 15 years, and a union man for many years, and is married."
+          ]
+        },
+        {
+          "name": "David Hopkins",
+          "role": "",
+          "phone": "01792655956",
+          "email": "cllr.david.hopkins@swansea.gov.uk",
+          "photo": "images/councillors/david-hopkins.jpg",
+          "bio": [
+            "David, who is also Swansea born & bred, has been a councillor representing this ward for over 30 years and is well known across the ward. He served as the Lord Mayor of Swansea for 16-17, and now shares the demanding roles of both Deputy Leader, as well as being the Cabinet Member for Delivery.",
+            "He is also currently governor at Townhill primary school. He has always dealt with ward issues as a priority and works hard behind the scenes to get things done, such as securing additional funding to replace the All Weather Pitch at the Phoenix Centre, and ensure funding for the construction of the new play areas on Mayhill Park.",
+            "He has been a member of the Labour Party for over 40 years, and a member of Unite union. David is married with 3 three grown up children and three grandchildren."
+          ]
+        },
+        {
+          "name": "Lesley Walton",
+          "role": "",
+          "phone": "07503702327",
+          "email": "cllr.lesley.walton@swansea.gov.uk",
+          "photo": "images/councillors/lesley-walton.jpg",
+          "bio": [
+            "Lesley got elected in 2012 and has been a school governor ever since, at Seaview Primary and currently at Dylan Thomas Community School. Knowing the issues which face the ward she is keen to promote the local Swansea Bay Credit Union, where members can borrow at a reasonable interest, & save money.",
+            "She has also been particularly involved in the setting up of the Friends of Mayhill Washing Lake & Community Food Garden, to address flytipping issues and provide communal food.",
+            "As Diversity Champion she speaks up at committee meetings, on social media, and uses her house front window to promote events. She is looking forward to helping Swansea become a Human Rights City.",
+            "She has been a Labour Party & union member, currently Unite, for over 35 years. Lesley is married with two cats, and runs her own design & print business."
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "title": "Newsletter 2021",
+          "url": "https://www.swansealabour.org/s/TOWNHILL-WARD-2.pdf"
+        }
+      ]
+    },
+    {
+      "name": "Waunarlwydd",
+      "slug": "waunarlwydd",
+      "page": "/waunarlwydd",
+      "pledgeHeading": "My Pledges",
+      "pledges": [
+        {
+          "title": "Building safer communities",
+          "detail": "Continue to work with the Police and residents to tackle speeding and antisocial behaviour in the ward",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Protecting Community Facilities",
+          "detail": "Continue to support and protect our Park and Community centre",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "A community to be proud of",
+          "detail": "I will work hard to make sure the ward looks cared for and is a place to be proud of",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Transport",
+          "detail": "I will continue to make sure the ward continues to get a decent bus service",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Working for you",
+          "detail": "As your Councillor I will be accessible to all residents and continue to listen to the Community I represent to ensure your voice is heard",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        }
+      ],
+      "councillors": [
+        {
+          "name": "Wendy Lewis",
+          "role": "",
+          "phone": "07866271605",
+          "email": "cllr.wendy.lewis@swansea.gov.uk",
+          "photo": "images/councillors/wendy-lewis.jpg",
+          "bio": []
+        }
+      ],
+      "documents": [
+        {
+          "title": "Election Address",
+          "url": "https://www.swansealabour.org/s/Waunarlwydd-Election-Address-final.pdf"
+        }
+      ]
+    },
+    {
+      "name": "West Cross",
+      "slug": "west-cross",
+      "page": "/west-cross",
+      "pledgeHeading": "Our Pledges",
+      "pledges": [
+        {
+          "title": "Sport and recreation facilities for young people",
+          "detail": "We are fully committed to the skatepark at Llwynderw and other facilities for younger people such as basketball and netball courts, and improving what's on offer in our parks",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Safer streets",
+          "detail": "We will work with local police and residents to tackle antisocial behaviour and speeding in the ward, making the area safer, particularly for pedestrians",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Businesses at the heart of our community",
+          "detail": "We will promote and support our local businesses and encourage footfall by developing pleasant community spaces to socialise around the top shops and bottom shops",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Greener, cleaner West Cross",
+          "detail": "We will take climate action locally, protecting and enhancing our green spaces, supporting Plastic Free Mumbles and recycling-on-the-go",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        },
+        {
+          "title": "Tackling social isolation",
+          "detail": "We will ensure there are opportunities to meet friends and neighbours and take part in social activities locally, particularly for older people in the ward",
+          "status": "",
+          "evidence": "",
+          "evidenceUrl": ""
+        }
+      ],
+      "councillors": [
+        {
+          "name": "Rebecca Fogarty",
+          "role": "",
+          "phone": "07724437865",
+          "email": "cllr.rebecca.fogarty@swansea.gov.uk",
+          "photo": "images/councillors/rebecca-fogarty.jpg",
+          "bio": [
+            "An active member of the community since moving here in 2016, I am Vice Chair of Mumbles Community Council and a Governor at Mayals Primary School. I am active in a local church and volunteer on local environmental projects.",
+            "I have varied work experience in the public and charity sectors. I now work in public health so it’s been a busy couple of years for me! I led the local community council response to the first wave of the Covid-19 pandemic, ensuring all residents had access to essential food and prescriptions.",
+            "As a new Mam, you’ll often see me out with the pram. I want all generations in West Cross to enjoy good physical and mental well-being. I believe in involving people and bringing the community together to improve our local area. I’ve enjoyed talking to residents about varied issues, and look forward to meeting you in the near future."
+          ]
+        },
+        {
+          "name": "Sara Keeton",
+          "role": "",
+          "phone": "07903411857",
+          "email": "cllr.sara.keeton@swansea.gov.uk",
+          "photo": "images/councillors/sara-keeton.jpg",
+          "bio": [
+            "I’m a Mumbles Community Councillor and Chair of the Environmental Committee; also, I chair West Cross Community Centre Management Committee. I'm a School Governor at The Grange and YGG Llwynderw.",
+            "Living in West Cross nearly all my life, I've spent many years raising my family here. I have volunteered at local schools and with mental health and learning disability organisations over the years. I ran a business with my husband and my current work places me in the heart of the community.",
+            "I love West Cross and want it to remain a safe and fun place to be, to grow up and to grow older! Our fabulous community benefits from Mumbles and Gower being so close and still has strong links with the rest of Swansea. I want more opportunities for our residents to enjoy being part of what's on offer and to create more local interest groups, clubs and socials."
+          ]
+        }
+      ],
+      "documents": [
+        {
+          "title": "Newsletter",
+          "url": "https://www.swansealabour.org/s/West-Cross.pdf"
+        },
+        {
+          "title": "Election Address",
+          "url": "https://www.swansealabour.org/s/West-Cross-Election-Address-Final.pdf"
+        }
+      ]
+    }
+  ]
+}

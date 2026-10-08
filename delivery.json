@@ -1,0 +1,821 @@
+{
+  "updated": "2026-10-08",
+  "projects": [
+    {
+      "id": "covid-memorial-on-the-promenade",
+      "title": "Covid memorial on the promenade",
+      "date": "2026-09",
+      "theme": "Community",
+      "status": "Completed",
+      "summary": "Permanent memorial near the Slip Bridge, a calm place to sit, reflect and remember.",
+      "lat": 51.6136,
+      "lng": -3.9655,
+      "ward": "",
+      "councilWard": "Uplands",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/covidmemorialunveiled"
+      }
+    },
+    {
+      "id": "leaf-boat-sculpture-s-new-home-cwmdonkin-park",
+      "title": "Leaf Boat sculpture's new home, Cwmdonkin Park",
+      "date": "2026-09",
+      "theme": "Community",
+      "status": "Completed",
+      "summary": "Restored Leaf Boat sculpture installed in a refurbished pond in the park linked to Dylan Thomas.",
+      "lat": 51.6214,
+      "lng": -3.96869,
+      "ward": "",
+      "councilWard": "Uplands",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/reunitedLeafBoatartist"
+      }
+    },
+    {
+      "id": "cae-mansel-road-resurfaced",
+      "title": "Cae Mansel Road resurfaced",
+      "date": "2026-09",
+      "theme": "Roads",
+      "status": "Completed",
+      "summary": "Full resurfacing of the road linking Gowerton and Three Crosses, part of £14m invested in roads and pavements.",
+      "lat": 51.64111,
+      "lng": -4.05114,
+      "ward": "Gowerton",
+      "councilWard": "Gowerton",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/article/48536/Another-road-in-Swansea-upgraded-under-multi-million-pound-investment-plans"
+      }
+    },
+    {
+      "id": "coed-bran-riverside-boardwalk-and-sensory-garden",
+      "title": "Coed Brân riverside boardwalk and sensory garden",
+      "date": "2026-08",
+      "theme": "Community",
+      "status": "Completed",
+      "summary": "New riverside boardwalk, viewing platform and sensory garden at the Coed Brân day service in Llansamlet.",
+      "lat": 51.663,
+      "lng": -3.89939,
+      "ward": "Llansamlet",
+      "councilWard": "Llansamlet",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/CoedBranOpenDay"
+      }
+    },
+    {
+      "id": "heol-talycopa-play-area",
+      "title": "Heol Talycopa play area",
+      "date": "2026-07",
+      "theme": "Play",
+      "status": "Completed",
+      "summary": "Inclusive play area with a multi-level play structure, wheelchair-accessible ramp and in-ground trampoline.",
+      "lat": 51.65738,
+      "lng": -3.88477,
+      "ward": "Llansamlet",
+      "councilWard": "Llansamlet",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/heoltalycopaplay"
+      }
+    },
+    {
+      "id": "copr-bay-north-car-park",
+      "title": "Copr Bay North car park",
+      "date": "2026-07",
+      "theme": "Regeneration",
+      "status": "Completed",
+      "summary": "New 628-space car park with £1-an-hour parking, freeing the St David's site for further regeneration.",
+      "lat": 51.6186,
+      "lng": -3.9421,
+      "ward": "Castle",
+      "councilWard": "Castle",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/Coprbaynorthopen"
+      }
+    },
+    {
+      "id": "new-urban-park-near-prince-of-wales-dock-sa1",
+      "title": "New urban park near Prince of Wales Dock, SA1",
+      "date": "2026-07",
+      "theme": "Play",
+      "status": "Completed",
+      "summary": "Underused land turned into a park with play facilities and nature planting, designed with local schoolchildren.",
+      "lat": 51.62018,
+      "lng": -3.9201,
+      "ward": "",
+      "councilWard": "Waterfront",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/LangdonRoadParkOpening"
+      }
+    },
+    {
+      "id": "castle-square-gardens-transformation",
+      "title": "Castle Square Gardens transformation",
+      "date": "2026-07",
+      "theme": "Regeneration",
+      "status": "Under way",
+      "summary": "Work under way to turn Castle Square into a greener, more welcoming public space.",
+      "lat": 51.62026,
+      "lng": -3.94228,
+      "ward": "Castle",
+      "councilWard": "Castle",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/CSprogress0726"
+      }
+    },
+    {
+      "id": "dyfatty-junction-community-space",
+      "title": "Dyfatty Junction community space",
+      "date": "2026-06",
+      "theme": "Community",
+      "status": "Completed",
+      "summary": "Long-empty shops on High Street, Dyfatty brought back into use as a hub for advice, support and community activity.",
+      "lat": 51.62881,
+      "lng": -3.94192,
+      "ward": "Castle",
+      "councilWard": "Castle",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/DyfattyJunctionlaunch"
+      }
+    },
+    {
+      "id": "victoria-park-street-plaza-skate-park",
+      "title": "Victoria Park street plaza skate park",
+      "date": "2026-06",
+      "theme": "Sport and leisure",
+      "status": "Completed",
+      "summary": "New street plaza-style wheeled sports facility, part of a £3m citywide investment.",
+      "lat": 51.61297,
+      "lng": -3.96249,
+      "ward": "",
+      "councilWard": "Uplands",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/ThreeSkateParks"
+      }
+    },
+    {
+      "id": "phoenix-centre-skate-park-townhill",
+      "title": "Phoenix Centre skate park, Townhill",
+      "date": "2026-06",
+      "theme": "Sport and leisure",
+      "status": "Completed",
+      "summary": "Upgraded skate park at the Phoenix Centre, part of the £3m wheeled sports investment.",
+      "lat": 51.6268,
+      "lng": -3.96575,
+      "ward": "Townhill",
+      "councilWard": "Townhill",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/ThreeSkateParks"
+      }
+    },
+    {
+      "id": "mynydd-newydd-skate-park-penlan",
+      "title": "Mynydd Newydd skate park, Penlan",
+      "date": "2026-06",
+      "theme": "Sport and leisure",
+      "status": "Completed",
+      "summary": "Upgraded skate park at Mynydd Newydd, part of the £3m wheeled sports investment.",
+      "lat": 51.65131,
+      "lng": -3.96873,
+      "ward": "Penderry",
+      "councilWard": "Penderry",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/ThreeSkateParks"
+      }
+    },
+    {
+      "id": "energy-positive-homes-at-brondeg-house-manselton",
+      "title": "Energy-positive homes at Brondeg House, Manselton",
+      "date": "2026-03",
+      "theme": "Homes",
+      "status": "Completed",
+      "summary": "13 new social rented homes with solar roofs and battery storage on the former education centre site.",
+      "lat": 51.63991,
+      "lng": -3.9494,
+      "ward": "",
+      "councilWard": "Cwmbwrla",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/article/44691/New-energy-positive-homes-completed-at-former-education-site"
+      }
+    },
+    {
+      "id": "former-central-police-station-becomes-homeless-accommodation",
+      "title": "Former Central Police Station becomes homeless accommodation",
+      "date": "2026-01",
+      "theme": "Homes",
+      "status": "Completed",
+      "summary": "Grade II listed building converted with Codi into 68 rooms of supported temporary accommodation.",
+      "lat": 51.623,
+      "lng": -3.9418,
+      "ward": "Castle",
+      "councilWard": "Castle",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/article/43027/Former-city-police-station-transformed-into-safe-place-to-live-for-homeless"
+      }
+    },
+    {
+      "id": "y-storfa-public-services-hub",
+      "title": "Y Storfa public services hub",
+      "date": "2025-12",
+      "theme": "Regeneration",
+      "status": "Completed",
+      "summary": "Flagship hub bringing council and partner services under one roof in the former BHS building on Oxford Street.",
+      "lat": 51.6195,
+      "lng": -3.944,
+      "ward": "Castle",
+      "councilWard": "Castle",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/YStorfaOpens"
+      }
+    },
+    {
+      "id": "gower-coast-path-rotherslade-to-limeslade",
+      "title": "Gower coast path, Rotherslade to Limeslade",
+      "date": "2025-11",
+      "theme": "Coast and countryside",
+      "status": "Completed",
+      "summary": "Final sections of a fully accessible 1.5m-wide path completed, after new stretches built in record time to beat coastal erosion.",
+      "lat": 51.56896,
+      "lng": -4.00654,
+      "ward": "",
+      "councilWard": "Mumbles",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/article/41855/Gower-coast-path-upgrade-completed"
+      }
+    },
+    {
+      "id": "parc-gwernfadog-play-area-morriston",
+      "title": "Parc Gwernfadog play area, Morriston",
+      "date": "2025-10",
+      "theme": "Play",
+      "status": "Completed",
+      "summary": "Morriston's first brand new play area in 25 years, with a bank slide, swings and an inclusive roundabout.",
+      "lat": 51.6745,
+      "lng": -3.9298,
+      "ward": "Morriston",
+      "councilWard": "Morriston",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/parcgwernfadogplayareas"
+      }
+    },
+    {
+      "id": "railway-heritage-sculpture-gowerton",
+      "title": "Railway heritage sculpture, Gowerton",
+      "date": "2025-10",
+      "theme": "Community",
+      "status": "Completed",
+      "summary": "Steam locomotive artwork on the site of the former Gowerton South station, beside the active travel route.",
+      "lat": 51.64782,
+      "lng": -4.04255,
+      "ward": "Gowerton",
+      "councilWard": "Gowerton",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/article/41385/New-train-sculpture-unveiled-in-Swansea-community"
+      }
+    },
+    {
+      "id": "underhill-park-sports-hub-and-cafe-reopened",
+      "title": "Underhill Park sports hub and café reopened",
+      "date": "2025-09",
+      "theme": "Sport and leisure",
+      "status": "Completed",
+      "summary": "All-weather pitch, changing rooms, hub and café reopened with Mumbles Community Council.",
+      "lat": 51.57369,
+      "lng": -4.00921,
+      "ward": "",
+      "councilWard": "Mumbles",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/HubCafeOpen"
+      }
+    },
+    {
+      "id": "penclawdd-community-shed-at-graig-y-coed",
+      "title": "Penclawdd Community Shed at Graig y Coed",
+      "date": "2025-09",
+      "theme": "Community",
+      "status": "Completed",
+      "summary": "Volunteer-built workshop and classroom at Graig y Coed playing fields, with council funding support.",
+      "lat": 51.639,
+      "lng": -4.1054,
+      "ward": "Penclawdd",
+      "councilWard": "Pen-clawdd",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/PenclawddHubOpening"
+      }
+    },
+    {
+      "id": "gowerton-station-walking-and-cycling-link",
+      "title": "Gowerton station walking and cycling link",
+      "date": "2025-09",
+      "theme": "Active travel",
+      "status": "Completed",
+      "summary": "New off-road link from Fairwood Terrace to Gowerton railway station for walkers, cyclists and rail passengers.",
+      "lat": 51.64893,
+      "lng": -4.03567,
+      "ward": "Gowerton",
+      "councilWard": "Gowerton",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/gowertonbikerouteopens"
+      }
+    },
+    {
+      "id": "sandfields-rain-gardens",
+      "title": "Sandfields rain gardens",
+      "date": "2025-09",
+      "theme": "Active travel",
+      "status": "Completed",
+      "summary": "Rain gardens and greener connections at dead-end streets in Sandfields to improve access for walkers and cyclists.",
+      "lat": 51.6141,
+      "lng": -3.9582,
+      "ward": "Castle",
+      "councilWard": "Castle",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/article/40473/New-rain-gardens-provide-better-access-for-residents"
+      }
+    },
+    {
+      "id": "seaview-play-area-mumbles",
+      "title": "Seaview play area, Mumbles",
+      "date": "2025-08",
+      "theme": "Play",
+      "status": "Completed",
+      "summary": "New timber play area on the rebuilt Mumbles seafront, opened as part of the coastal defence programme.",
+      "lat": 51.5702,
+      "lng": -3.9978,
+      "ward": "",
+      "councilWard": "Mumbles",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/article/40321/Officially-open-Seaview-play-area-on-new-look-coastline"
+      }
+    },
+    {
+      "id": "west-cross-woodland-play-area",
+      "title": "West Cross Woodland play area",
+      "date": "2025-08",
+      "theme": "Play",
+      "status": "Completed",
+      "summary": "New woodland play area shaped by local residents and children, one of more than 60 created or upgraded.",
+      "lat": 51.5838,
+      "lng": -4.0156,
+      "ward": "West Cross",
+      "councilWard": "West Cross",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/westcrosswoodlandsplayOfficial"
+      }
+    },
+    {
+      "id": "mumbles-coastal-flood-defences",
+      "title": "Mumbles coastal flood defences",
+      "date": "2025-07",
+      "theme": "Coast and countryside",
+      "status": "Completed",
+      "summary": "£26m scheme with a new seawall and wider promenade, cutting flood risk for 126 properties including more than 50 businesses.",
+      "lat": 51.5727,
+      "lng": -3.9945,
+      "ward": "",
+      "councilWard": "Mumbles",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/MumblesSchemeOpen"
+      }
+    },
+    {
+      "id": "71-72-kingsway-offices-open",
+      "title": "71/72 Kingsway offices open",
+      "date": "2025-07",
+      "theme": "Regeneration",
+      "status": "Completed",
+      "summary": "Council-developed 104,000 sq ft office scheme for up to 600 jobs, part-funded by the Swansea Bay City Deal.",
+      "lat": 51.61967,
+      "lng": -3.94816,
+      "ward": "Castle",
+      "councilWard": "Castle",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/KingswayOffices"
+      }
+    },
+    {
+      "id": "gors-avenue-play-area-townhill",
+      "title": "Gors Avenue play area, Townhill",
+      "date": "2025-06",
+      "theme": "Play",
+      "status": "Completed",
+      "summary": "Play area with a carousel, basket swing, slide, zip wire and sensory panels officially opened.",
+      "lat": 51.63351,
+      "lng": -3.9528,
+      "ward": "Townhill",
+      "councilWard": "Townhill",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/gorsavenueplayareaofficialopen"
+      }
+    },
+    {
+      "id": "parc-melin-mynach-skate-park-gorseinon",
+      "title": "Parc Melin Mynach skate park, Gorseinon",
+      "date": "2025-06",
+      "theme": "Sport and leisure",
+      "status": "Completed",
+      "summary": "Upgraded skate park with ramps, banks and a quarter pipe, part of a £2.8m wheeled sports investment.",
+      "lat": 51.6742,
+      "lng": -4.03845,
+      "ward": "Gorseinon & Penyrheol",
+      "councilWard": "Gorseinon and Penyrheol",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/MelinMynach"
+      }
+    },
+    {
+      "id": "garden-village-play-area-myrtle-road",
+      "title": "Garden Village play area, Myrtle Road",
+      "date": "2025-06",
+      "theme": "Play",
+      "status": "Completed",
+      "summary": "New community play area with swings, trampoline, rocking roundabout and sensory features, opened in time for summer.",
+      "lat": 51.66078,
+      "lng": -4.02822,
+      "ward": "Llwchwr",
+      "councilWard": "Llwchwr",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/gardenvillageplayarea"
+      }
+    },
+    {
+      "id": "brynmelyn-park-play-area-waun-wen",
+      "title": "Brynmelyn Park play area, Waun Wen",
+      "date": "2025-05",
+      "theme": "Play",
+      "status": "Completed",
+      "summary": "Upgraded play spaces designed for both teenagers and infants, officially opened.",
+      "lat": 51.63278,
+      "lng": -3.94502,
+      "ward": "Castle",
+      "councilWard": "Castle",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/brynmelynplayopen"
+      }
+    },
+    {
+      "id": "coed-bach-skate-park-pontarddulais",
+      "title": "Coed Bach skate park, Pontarddulais",
+      "date": "2025-04",
+      "theme": "Sport and leisure",
+      "status": "Completed",
+      "summary": "New concrete skate park with mini ramps, a volcano and pump roller, replacing an old metal ramp.",
+      "lat": 51.70906,
+      "lng": -4.03751,
+      "ward": "Pontarddulais",
+      "councilWard": "Pontarddulais",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/CoedBachSkate"
+      }
+    },
+    {
+      "id": "former-sparks-youth-centre-becomes-new-homes",
+      "title": "Former Sparks youth centre becomes new homes",
+      "date": "2025-02",
+      "theme": "Homes",
+      "status": "Completed",
+      "summary": "Disused council building in Blaenymaes converted into four flats for people on the housing waiting list.",
+      "lat": 51.65379,
+      "lng": -3.97473,
+      "ward": "Penderry",
+      "councilWard": "Penderry",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/article/35377/Former-youth-centre-transformed-into-apartments"
+      }
+    },
+    {
+      "id": "morriston-park-games-area-and-teqball-table",
+      "title": "Morriston Park games area and Teqball table",
+      "date": "2025-02",
+      "theme": "Sport and leisure",
+      "status": "Completed",
+      "summary": "New multi-use games area at Morriston Park, including Swansea's first Teqball table.",
+      "lat": 51.66792,
+      "lng": -3.93439,
+      "ward": "Morriston",
+      "councilWard": "Morriston",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/MorePlayMorristonBlaenymaes"
+      }
+    },
+    {
+      "id": "broughton-avenue-games-area-blaenymaes",
+      "title": "Broughton Avenue games area, Blaenymaes",
+      "date": "2025-02",
+      "theme": "Sport and leisure",
+      "status": "Completed",
+      "summary": "New purpose-built multi-use games area for young people at Broughton Avenue.",
+      "lat": 51.6538,
+      "lng": -3.97466,
+      "ward": "Penderry",
+      "councilWard": "Penderry",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/MorePlayMorristonBlaenymaes"
+      }
+    },
+    {
+      "id": "long-ridge-play-area-mayhill",
+      "title": "Long Ridge play area, Mayhill",
+      "date": "2025-01",
+      "theme": "Play",
+      "status": "Completed",
+      "summary": "£91,000 inclusive play area with a mini games area, sensory totems and wheelchair-accessible equipment.",
+      "lat": 51.62883,
+      "lng": -3.94671,
+      "ward": "Townhill",
+      "councilWard": "Townhill",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/article/34788/New-Long-Ridge-Play-Area-Opens-in-Mayhill-A-Haven-for-Local-Families"
+      }
+    },
+    {
+      "id": "swansea-bay-promenade-lighting",
+      "title": "Swansea Bay promenade lighting",
+      "date": "2024-12",
+      "theme": "Coast and countryside",
+      "status": "Completed",
+      "summary": "More than 300 energy-efficient LED bollards installed along the bay promenade, an investment of over £400,000, so people feel safer after dark.",
+      "lat": 51.6087,
+      "lng": -3.9733,
+      "ward": "",
+      "councilWard": "Sketty",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/article/34363/Swansea-bay-promenade-lights-project-now-completed"
+      }
+    },
+    {
+      "id": "palace-theatre-brought-back-to-life",
+      "title": "Palace Theatre brought back to life",
+      "date": "2024-10",
+      "theme": "Regeneration",
+      "status": "Completed",
+      "summary": "Council-led restoration of the Grade II listed Palace Theatre on High Street, now six floors of workspace for tech and creative businesses.",
+      "lat": 51.62743,
+      "lng": -3.94129,
+      "ward": "Castle",
+      "councilWard": "Castle",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/PalacePC"
+      }
+    },
+    {
+      "id": "penclawdd-pirate-ship-play-area",
+      "title": "Penclawdd pirate ship play area",
+      "date": "2024-07",
+      "theme": "Play",
+      "status": "Completed",
+      "summary": "£120,000 upgrade with Llanrhidian Higher Community Council, including a pirate play ship, zip wire and inclusive roundabout.",
+      "lat": 51.6427,
+      "lng": -4.11,
+      "ward": "Penclawdd",
+      "councilWard": "Pen-clawdd",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/penclawddplayarealaunch"
+      }
+    },
+    {
+      "id": "cefn-hengoed-indoor-sports-barn-and-leisure-centre",
+      "title": "Cefn Hengoed indoor sports barn and leisure centre",
+      "date": "2024-07",
+      "theme": "Sport and leisure",
+      "status": "Completed",
+      "summary": "£7.5m scheme: indoor sports barn with 3G pitch, new gym, refurbished sports hall and community rooms at Cefn Hengoed.",
+      "lat": 51.64377,
+      "lng": -3.90548,
+      "ward": "Bôn-y-maen",
+      "councilWard": "Bôn-y-maen",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/CefnHengoedOpening"
+      }
+    },
+    {
+      "id": "coed-gwilym-park-play-area-clydach",
+      "title": "Coed Gwilym Park play area, Clydach",
+      "date": "2024-05",
+      "theme": "Play",
+      "status": "Completed",
+      "summary": "Upgraded play area with accessible equipment at Coed Gwilym Park, officially opened by the council leader.",
+      "lat": 51.69717,
+      "lng": -3.87946,
+      "ward": "",
+      "councilWard": "Clydach",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/clydachplayofficial"
+      }
+    },
+    {
+      "id": "new-walkers-bridge-at-pwll-du-bay",
+      "title": "New walkers' bridge at Pwll Du Bay",
+      "date": "2024-04",
+      "theme": "Coast and countryside",
+      "status": "Completed",
+      "summary": "Old concrete bridge replaced with a wider £15,000 oak and steel bridge on the Gower coast path.",
+      "lat": 51.5645,
+      "lng": -4.05711,
+      "ward": "",
+      "councilWard": "Bishopston",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/pwlldunewbridge"
+      }
+    },
+    {
+      "id": "new-play-area-at-rees-row-park-plasmarl",
+      "title": "New play area at Rees Row Park, Plasmarl",
+      "date": "2024-03",
+      "theme": "Play",
+      "status": "Completed",
+      "summary": "Brand new accessible play area opposite Plasmarl Primary School, opened with help from pupils, as part of the citywide play area upgrade programme.",
+      "lat": 51.64876,
+      "lng": -3.93559,
+      "ward": "Landore",
+      "councilWard": "Landore",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/article/28589/Another-play-area-upgraded-in-Swansea"
+      }
+    },
+    {
+      "id": "phoenix-centre-play-area-townhill",
+      "title": "Phoenix Centre play area, Townhill",
+      "date": "2024-03",
+      "theme": "Play",
+      "status": "Completed",
+      "summary": "New play area with slides, swings, sensory and accessible equipment at the Phoenix Centre community hub, officially opened by the council leader.",
+      "lat": 51.6262,
+      "lng": -3.96655,
+      "ward": "Townhill",
+      "councilWard": "Townhill",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/phoenixplayareaofficial"
+      }
+    },
+    {
+      "id": "swansea-arena-and-amy-dillwyn-coastal-park",
+      "title": "Swansea Arena and Amy Dillwyn coastal park",
+      "date": "2024-03",
+      "theme": "Regeneration",
+      "status": "Completed",
+      "summary": "The coastal park beside Swansea Arena at Copr Bay was named the Amy Dillwyn Park, honouring the Victorian novelist and businesswoman.",
+      "lat": 51.61609,
+      "lng": -3.94239,
+      "ward": "",
+      "councilWard": "Waterfront",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/AmyDillwynParknews"
+      }
+    },
+    {
+      "id": "manselton-park-play-area-upgraded",
+      "title": "Manselton Park play area upgraded",
+      "date": "2024-02",
+      "theme": "Play",
+      "status": "Completed",
+      "summary": "Upgraded play area at Manselton Park, part of more than 50 neighbourhood play areas improved by the council.",
+      "lat": 51.64317,
+      "lng": -3.95481,
+      "ward": "",
+      "councilWard": "Cwmbwrla",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/threemoreplayareas"
+      }
+    },
+    {
+      "id": "jersey-park-play-area-port-tennant",
+      "title": "Jersey Park play area, Port Tennant",
+      "date": "2024-02",
+      "theme": "Play",
+      "status": "Completed",
+      "summary": "Jersey Park's play area upgraded with accessible equipment as part of the citywide programme.",
+      "lat": 51.62431,
+      "lng": -3.91971,
+      "ward": "St Thomas",
+      "councilWard": "St Thomas",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/threemoreplayareas"
+      }
+    },
+    {
+      "id": "brynmill-park-play-area-upgraded",
+      "title": "Brynmill Park play area upgraded",
+      "date": "2024-02",
+      "theme": "Play",
+      "status": "Completed",
+      "summary": "New play equipment at Brynmill Park, opened as part of the council's play areas renewal programme.",
+      "lat": 51.61492,
+      "lng": -3.97415,
+      "ward": "",
+      "councilWard": "Uplands",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/threemoreplayareas"
+      }
+    },
+    {
+      "id": "penllergaer-to-gorseinon-walking-and-cycling-route",
+      "title": "Penllergaer to Gorseinon walking and cycling route",
+      "date": "2024-02",
+      "theme": "Active travel",
+      "status": "Completed",
+      "summary": "2.8km off-road route along Gorseinon Road completed, linking existing routes towards Morriston, Kingsbridge and Gowerton.",
+      "lat": 51.66776,
+      "lng": -4.01908,
+      "ward": "",
+      "councilWard": "Penllergaer",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/article/27473/New-walking-and-cycling-routes-added-to-Swanseas-network"
+      }
+    },
+    {
+      "id": "new-pavements-on-ynysallan-road",
+      "title": "New pavements on Ynysallan Road",
+      "date": "2024-02",
+      "theme": "Active travel",
+      "status": "Completed",
+      "summary": "New pavements along Ynysallan Road give residents of Parc Bryn Heulog near Birchgrove safe walking access after years without.",
+      "lat": 51.67526,
+      "lng": -3.89653,
+      "ward": "Llansamlet",
+      "councilWard": "Llansamlet",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/article/27473/New-walking-and-cycling-routes-added-to-Swanseas-network"
+      }
+    },
+    {
+      "id": "pontlliw-play-area-upgraded",
+      "title": "Pontlliw play area upgraded",
+      "date": "2024-01",
+      "theme": "Play",
+      "status": "Completed",
+      "summary": "Pontlliw's play area was among the neighbourhood sites completed in the council's play areas renewal programme.",
+      "lat": 51.69022,
+      "lng": -4.0126,
+      "ward": "Pontlliw & Tircoed",
+      "councilWard": "Pontlliw and Tircoed",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/newplayareasdec23"
+      }
+    },
+    {
+      "id": "gendros-play-area-upgraded",
+      "title": "Gendros play area upgraded",
+      "date": "2024-01",
+      "theme": "Play",
+      "status": "Completed",
+      "summary": "New play zone completed in Gendros as part of the council's play areas renewal programme, with features for disabled children.",
+      "lat": 51.64141,
+      "lng": -3.96926,
+      "ward": "Cockett",
+      "councilWard": "Cockett",
+      "source": {
+        "name": "Swansea Council",
+        "url": "https://www.swansea.gov.uk/newplayareasdec23"
+      }
+    }
+  ]
+}

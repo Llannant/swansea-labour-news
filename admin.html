@@ -60,6 +60,18 @@
   .photo.off { opacity: .5; }
   @media (max-width: 600px) { .photo { grid-template-columns: 1fr; } }
   .mini { width: 72px; height: 48px; object-fit: cover; border-radius: 3px; display: block; background: var(--bg); }
+  .card { border: 1px solid var(--line); border-radius: 8px; padding: 14px; margin-top: 12px; }
+  .card h3 { margin: 0 0 6px; font-size: 15px; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; }
+  @media (max-width: 600px) { .two { grid-template-columns: 1fr; } }
+  .person { display: grid; grid-template-columns: 110px 1fr; gap: 14px; }
+  .person .face { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; background: var(--bg); display: block; }
+  select { padding: 8px 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--text); font: inherit; }
+  .row-btns { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+  .row-btns button { padding: 5px 10px; font-size: 13px; }
+  .results { list-style: none; padding: 0; margin: 6px 0 0; }
+  .results li button { text-align: left; width: 100%; background: transparent; border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px; margin-top: 4px; color: inherit; font: inherit; font-size: 13px; cursor: pointer; }
+  .sticky { position: sticky; bottom: 0; background: var(--panel); padding: 12px 0 4px; border-top: 1px solid var(--line); margin-top: 18px; }
 </style>
 </head>
 <body>
@@ -67,6 +79,8 @@
 <nav role="tablist">
   <button role="tab" data-tab="drafts" aria-selected="true">Drafts</button>
   <button role="tab" data-tab="published" aria-selected="false">Published</button>
+  <button role="tab" data-tab="wards" aria-selected="false">Wards</button>
+  <button role="tab" data-tab="map" aria-selected="false">Map</button>
   <button role="tab" data-tab="settings" aria-selected="false">Settings</button>
   <button role="tab" data-tab="connect" aria-selected="false">Connect</button>
 </nav>
@@ -75,6 +89,8 @@
     <p id="status" class="status" role="status"></p>
     <section id="tab-drafts"></section>
     <section id="tab-published" hidden></section>
+    <section id="tab-wards" hidden></section>
+    <section id="tab-map" hidden></section>
     <section id="tab-settings" hidden></section>
     <section id="tab-connect" hidden>
       <p>This page talks to your two GitHub repositories. These details are saved only in this browser. Use this page on your own computer only.</p>
@@ -230,11 +246,15 @@ async function writeSite(data, sha, message) {
 // ---- Loading ----
 async function loadAll() {
   setStatus("Loading…");
-  const [config, published, dir] = await Promise.all([
+  const [config, published, dir, wards, delivery] = await Promise.all([
     readJson(conn.engine, "config.json"),
     readJson(conn.site, "articles.json"),
     gh(conn.engine, "data/drafts"),
+    readJson(conn.site, "wards.json"),
+    readJson(conn.site, "delivery.json"),
   ]);
+  state.wards = wards || { data: { wards: [] }, sha: undefined };
+  state.delivery = delivery || { data: { projects: [] }, sha: undefined };
   state.config = config || { data: {}, sha: undefined };
   state.published = published || { data: { imprint: "", articles: [] }, sha: undefined };
   const files = (dir || []).filter((f) => f.type === "file" && f.name.endsWith(".json"));
@@ -243,7 +263,7 @@ async function loadAll() {
     return r && { ...r.data, _path: f.path, _sha: r.sha };
   }))).filter(Boolean).sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || ""));
   setStatus(`${state.drafts.length} draft(s) waiting.`);
-  renderDrafts(); renderPublished(); renderSettings();
+  renderDrafts(); renderPublished(); renderWards(); renderMap(); renderSettings();
 }
 
 // ---- Drafts ----
@@ -478,6 +498,232 @@ async function unpublish(a) {
     await loadAll();
     setStatus("Removed from the website.", "ok");
   } catch (e) { setStatus(e.message, "err"); }
+}
+
+// ---- Wards: councillors and pledges (wards.json in the site repository) ----
+const PLEDGE_STATUS = [["", "Not set (no badge shown)"], ["delivered", "Delivered"], ["in-progress", "In progress"], ["ongoing", "Ongoing"], ["not-yet", "Not yet started"]];
+const slugify = (s) => s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+
+// Square-crop a photo to 480 x 480 for the councillor directory.
+async function squarePhoto(file) {
+  const bmp = await createImageBitmap(file);
+  const side = Math.min(bmp.width, bmp.height);
+  const canvas = document.createElement("canvas");
+  canvas.width = canvas.height = 480;
+  const ctx = canvas.getContext("2d");
+  ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, 480, 480);
+  ctx.drawImage(bmp, (bmp.width - side) / 2, Math.max(0, (bmp.height - side) / 4), side, side, 0, 0, 480, 480);
+  const blob = await new Promise((r) => canvas.toBlob(r, "image/jpeg", 0.85));
+  return bytesToB64(await blob.arrayBuffer());
+}
+
+function renderWards() {
+  const root = $("#tab-wards"); root.innerHTML = "";
+  const wards = state.wards.data.wards || [];
+  if (!wards.length) { root.append(el("p", { class: "empty", text: "wards.json has not been uploaded to the site repository yet." })); return; }
+  if (!state.wardSel || !wards.find((w) => w.slug === state.wardSel)) state.wardSel = wards[0].slug;
+  const pick = el("select", { onchange: () => { state.wardSel = pick.value; renderWards(); } },
+    wards.map((w) => el("option", { value: w.slug, selected: w.slug === state.wardSel }, w.name)));
+  root.append(el("label", { text: "Ward" }), pick,
+    el("p", { class: "hint", text: "Changes show on the ward page within a few minutes of saving." }));
+
+  const ward = JSON.parse(JSON.stringify(wards.find((w) => w.slug === state.wardSel)));
+  const pendingPhotos = new Map(); // councillor index -> base64
+
+  // Councillors
+  const peopleBox = el("div");
+  function drawPeople() {
+    peopleBox.innerHTML = "";
+    ward.councillors.forEach((c, i) => {
+      const face = el("img", { class: "face", alt: "", src: pendingPhotos.has(i) ? "data:image/jpeg;base64," + pendingPhotos.get(i) : c.photo ? siteUrl(c.photo) : "" });
+      const file = el("input", { type: "file", accept: "image/*", style: "display:none" });
+      file.addEventListener("change", async () => {
+        if (!file.files[0]) return;
+        try { pendingPhotos.set(i, await squarePhoto(file.files[0])); drawPeople(); } catch (e) { setStatus(e.message, "err"); }
+      });
+      const f = (key, label, attrs = {}) => {
+        const input = el("input", { type: "text", value: c[key] || "", ...attrs });
+        input.addEventListener("input", () => { c[key] = input.value; });
+        return [el("label", { text: label }), input];
+      };
+      const bio = el("textarea", {}, (c.bio || []).join("\n\n"));
+      bio.addEventListener("input", () => { c.bio = bio.value.split(/\n\s*\n/).map((s) => s.trim()).filter(Boolean); });
+      peopleBox.append(el("div", { class: "card person" },
+        el("div", {}, face, file, el("div", { class: "row-btns" }, el("button", { class: "secondary", type: "button", onclick: () => file.click() }, "Photo"))),
+        el("div", {},
+          el("div", { class: "two" }, el("div", {}, ...f("name", "Name")), el("div", {}, ...f("role", "Role (optional)", { placeholder: "e.g. Cabinet Member for Education" }))),
+          el("div", { class: "two" }, el("div", {}, ...f("phone", "Phone")), el("div", {}, ...f("email", "Email"))),
+          el("label", { text: "About (optional; blank line between paragraphs)" }), bio,
+          el("div", { class: "row-btns" },
+            el("button", { class: "secondary", type: "button", onclick: () => { if (i > 0) { ward.councillors.splice(i - 1, 0, ward.councillors.splice(i, 1)[0]); drawPeople(); } } }, "Move up"),
+            el("button", { class: "secondary", type: "button", onclick: () => { if (confirm(`Remove ${c.name || "this councillor"} from ${ward.name}?`)) { ward.councillors.splice(i, 1); pendingPhotos.delete(i); drawPeople(); } } }, "Remove")))));
+    });
+  }
+  drawPeople();
+
+  // Pledges
+  const pledgeBox = el("div");
+  function drawPledges() {
+    pledgeBox.innerHTML = "";
+    ward.pledges.forEach((p, i) => {
+      const t = el("input", { type: "text", value: p.title || "" }); t.addEventListener("input", () => { p.title = t.value; });
+      const d = el("textarea", {}, p.detail || ""); d.addEventListener("input", () => { p.detail = d.value; });
+      const s = el("select", {}, PLEDGE_STATUS.map(([v, l]) => el("option", { value: v, selected: (p.status || "") === v }, l)));
+      s.addEventListener("change", () => { p.status = s.value; });
+      const ev = el("input", { type: "text", value: p.evidence || "", placeholder: "e.g. New play area opened at Gors Avenue in June 2025." }); ev.addEventListener("input", () => { p.evidence = ev.value; });
+      const eu = el("input", { type: "url", value: p.evidenceUrl || "", placeholder: "https://…" }); eu.addEventListener("input", () => { p.evidenceUrl = eu.value; });
+      pledgeBox.append(el("div", { class: "card" },
+        el("label", { text: "Pledge" }), t,
+        el("label", { text: "What was promised" }), d,
+        el("div", { class: "two" }, el("div", {}, el("label", { text: "Progress" }), s), el("div", {}, el("label", { text: "Link to evidence (optional)" }), eu)),
+        el("label", { text: "What has happened (optional)" }), ev,
+        el("div", { class: "row-btns" },
+          el("button", { class: "secondary", type: "button", onclick: () => { if (i > 0) { ward.pledges.splice(i - 1, 0, ward.pledges.splice(i, 1)[0]); drawPledges(); } } }, "Move up"),
+          el("button", { class: "secondary", type: "button", onclick: () => { if (confirm("Remove this pledge?")) { ward.pledges.splice(i, 1); drawPledges(); } } }, "Remove"))));
+    });
+  }
+  drawPledges();
+  const heading = el("input", { type: "text", value: ward.pledgeHeading || "Our pledges" });
+  heading.addEventListener("input", () => { ward.pledgeHeading = heading.value; });
+
+  async function save() {
+    try {
+      for (const [i, b64] of pendingPhotos) {
+        const c = ward.councillors[i]; if (!c) continue;
+        setStatus(`Uploading photo of ${c.name}…`);
+        const path = `images/councillors/${slugify(c.name || "councillor")}-${Date.now().toString(36)}.jpg`;
+        await writeB64(conn.site, path, b64, `Photo for ${c.name}`);
+        c.photo = path;
+      }
+      setStatus("Saving…");
+      const fresh = await readJson(conn.site, "wards.json");
+      const data = fresh ? fresh.data : { wards: [] };
+      data.wards = data.wards.map((w) => (w.slug === ward.slug ? ward : w));
+      data.updated = new Date().toISOString().slice(0, 10);
+      await writeJson(conn.site, "wards.json", data, fresh && fresh.sha, `Update ${ward.name} ward`);
+      await loadAll(); showTab("wards");
+      setStatus(`${ward.name} saved. The ward page updates within a few minutes.`, "ok");
+    } catch (e) { setStatus(e.message, "err"); }
+  }
+
+  root.append(
+    el("h2", { text: "Councillors", style: "font-size:18px;margin:22px 0 0" }), peopleBox,
+    el("div", { class: "row-btns" }, el("button", { class: "secondary", type: "button", onclick: () => { ward.councillors.push({ name: "", role: "", phone: "", email: "", photo: "", bio: [] }); drawPeople(); } }, "Add councillor")),
+    el("h2", { text: "Pledges", style: "font-size:18px;margin:28px 0 0" }),
+    el("label", { text: "Heading shown on the page" }), heading,
+    el("p", { class: "hint", text: "Pledges with no progress set show without a badge. The progress bar appears once at least one has a status." }),
+    pledgeBox,
+    el("div", { class: "row-btns" }, el("button", { class: "secondary", type: "button", onclick: () => { ward.pledges.push({ title: "", detail: "", status: "", evidence: "", evidenceUrl: "" }); drawPledges(); } }, "Add pledge")),
+    el("div", { class: "sticky" }, el("button", { class: "primary", onclick: save }, `Save ${ward.name}`)));
+}
+
+// ---- Map: delivery projects (delivery.json in the site repository) ----
+const THEMES = ["Play", "Sport and leisure", "Homes", "Active travel", "Regeneration", "Coast and countryside", "Community", "Roads"];
+const SITE_WARD_NAMES = ["Bôn-y-maen", "Castle", "Cockett", "Dunvant & Killay", "Gorseinon & Penyrheol", "Gowerton", "Landore", "Llansamlet", "Llwchwr", "Morriston", "Mynyddbach", "Penclawdd", "Penderry", "Pontarddulais", "Pontlliw & Tircoed", "St Thomas", "Townhill", "Waunarlwydd", "West Cross"];
+const wardKey = (s) => String(s || "").toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/\band\b/g, "&").replace(/[^a-z&]/g, "");
+
+async function wardAt(lat, lng) {
+  const j = await (await fetch(`https://api.postcodes.io/postcodes?lon=${lng}&lat=${lat}&radius=1000&limit=1`)).json();
+  const councilWard = j.result?.[0]?.admin_ward || "";
+  return { councilWard, ward: SITE_WARD_NAMES.find((w) => wardKey(w) === wardKey(councilWard)) || "" };
+}
+
+function renderMap() {
+  const root = $("#tab-map"); root.innerHTML = "";
+  const projects = state.delivery.data.projects || [];
+  root.append(el("p", { class: "hint", text: `${projects.length} projects on the map. Click a title to edit it.` }),
+    el("div", { class: "btns", style: "margin-top:8px" }, el("button", { class: "primary", onclick: () => editProject(null) }, "Add a project")));
+  root.append(el("table", { style: "margin-top:14px" },
+    el("tr", {}, el("th", { text: "Date" }), el("th", { text: "Project" }), el("th", { text: "Ward" }), el("th", { text: "Status" })),
+    projects.map((p) => el("tr", {},
+      el("td", { text: p.date || "" }),
+      el("td", {}, el("a", { href: "#", onclick: (e) => { e.preventDefault(); editProject(p.id); }, text: p.title })),
+      el("td", { text: p.ward || p.councilWard || "" }),
+      el("td", { text: p.status || "" })))));
+}
+
+function editProject(id) {
+  const root = $("#tab-map"); root.innerHTML = "";
+  const existing = (state.delivery.data.projects || []).find((p) => p.id === id);
+  const p = existing ? JSON.parse(JSON.stringify(existing)) : { id: "", title: "", date: new Date().toISOString().slice(0, 7), theme: "Play", status: "Completed", summary: "", lat: null, lng: null, ward: "", councilWard: "", source: { name: "Swansea Council", url: "" } };
+  const input = (val, attrs = {}) => el("input", { type: "text", value: val ?? "", ...attrs });
+  const f = {
+    title: input(p.title), date: input(p.date, { placeholder: "YYYY-MM" }),
+    theme: el("select", {}, THEMES.map((t) => el("option", { value: t, selected: p.theme === t }, t))),
+    status: el("select", {}, ["Completed", "Under way"].map((t) => el("option", { value: t, selected: p.status === t }, t))),
+    summary: el("textarea", {}, p.summary || ""),
+    sourceName: input(p.source?.name || "Swansea Council"), sourceUrl: input(p.source?.url || "", { type: "url", placeholder: "https://www.swansea.gov.uk/…" }),
+    search: input("", { placeholder: "e.g. Gors Avenue, Townhill" }),
+    lat: input(p.lat ?? "", { placeholder: "51.62" }), lng: input(p.lng ?? "", { placeholder: "-3.94" }),
+  };
+  const where = el("p", { class: "hint", text: p.lat ? `Ward: ${p.ward || p.councilWard || "unknown"}` : "No location yet." });
+  const results = el("ul", { class: "results" });
+  async function setPoint(lat, lng) {
+    f.lat.value = (+lat).toFixed(5); f.lng.value = (+lng).toFixed(5);
+    where.textContent = "Finding ward…";
+    try { const w = await wardAt(lat, lng); p.ward = w.ward; p.councilWard = w.councilWard; where.textContent = `Ward: ${w.ward || w.councilWard || "outside Swansea?"}`; }
+    catch { where.textContent = "Could not look up the ward."; }
+  }
+  async function search() {
+    results.innerHTML = "";
+    const q = f.search.value.trim(); if (!q) return;
+    const u = new URL("https://nominatim.openstreetmap.org/search");
+    u.search = new URLSearchParams({ q, format: "jsonv2", limit: "5", countrycodes: "gb", viewbox: "-4.33,51.76,-3.83,51.53", bounded: "1" });
+    try {
+      const j = await (await fetch(u)).json();
+      if (!j.length) results.append(el("li", { class: "hint", text: "Nothing found. Try a street or park name." }));
+      j.forEach((r) => results.append(el("li", {}, el("button", { type: "button", onclick: () => { results.innerHTML = ""; setPoint(r.lat, r.lon); } }, r.display_name))));
+    } catch (e) { results.append(el("li", { class: "hint", text: "Search failed: " + e.message })); }
+  }
+  f.lat.addEventListener("change", () => { if (f.lat.value && f.lng.value) setPoint(f.lat.value, f.lng.value); });
+  f.lng.addEventListener("change", () => { if (f.lat.value && f.lng.value) setPoint(f.lat.value, f.lng.value); });
+
+  async function save() {
+    const lat = parseFloat(f.lat.value), lng = parseFloat(f.lng.value);
+    if (!f.title.value.trim() || !f.summary.value.trim()) return setStatus("A project needs a title and a summary.", "err");
+    if (!isFinite(lat) || !isFinite(lng)) return setStatus("Choose a location so the project can go on the map.", "err");
+    if (!/^\d{4}-\d{2}$/.test(f.date.value.trim())) return setStatus("Date should look like 2026-09.", "err");
+    const item = {
+      id: p.id || slugify(f.title.value).slice(0, 60) + "-" + Date.now().toString(36).slice(-4),
+      title: f.title.value.trim(), date: f.date.value.trim(), theme: f.theme.value, status: f.status.value,
+      summary: f.summary.value.trim(), lat: +lat.toFixed(5), lng: +lng.toFixed(5), ward: p.ward || "", councilWard: p.councilWard || "",
+      source: { name: f.sourceName.value.trim(), url: f.sourceUrl.value.trim() },
+    };
+    try {
+      setStatus("Saving…");
+      const fresh = await readJson(conn.site, "delivery.json");
+      const data = fresh ? fresh.data : { projects: [] };
+      data.projects = [item, ...data.projects.filter((x) => x.id !== item.id)].sort((a, b) => b.date.localeCompare(a.date));
+      data.updated = new Date().toISOString().slice(0, 10);
+      await writeJson(conn.site, "delivery.json", data, fresh && fresh.sha, `Map: ${item.title}`);
+      await loadAll(); showTab("map");
+      setStatus("Saved. The map updates within a few minutes.", "ok");
+    } catch (e) { setStatus(e.message, "err"); }
+  }
+  async function remove() {
+    if (!confirm(`Remove "${p.title}" from the map?`)) return;
+    try {
+      const fresh = await readJson(conn.site, "delivery.json");
+      fresh.data.projects = fresh.data.projects.filter((x) => x.id !== p.id);
+      await writeJson(conn.site, "delivery.json", fresh.data, fresh.sha, `Map: remove ${p.title}`);
+      await loadAll(); showTab("map");
+      setStatus("Removed from the map.", "ok");
+    } catch (e) { setStatus(e.message, "err"); }
+  }
+
+  root.append(
+    el("div", { class: "btns", style: "margin-top:0" }, el("button", { class: "secondary", onclick: renderMap }, "← All projects")),
+    el("label", { text: "Title" }), f.title,
+    el("div", { class: "two" }, el("div", {}, el("label", { text: "Month (YYYY-MM)" }), f.date), el("div", {}, el("label", { text: "Status" }), f.status)),
+    el("label", { text: "Type" }), f.theme,
+    el("label", { text: "Summary (one or two sentences, in your own words)" }), f.summary,
+    el("div", { class: "two" }, el("div", {}, el("label", { text: "Source name" }), f.sourceName), el("div", {}, el("label", { text: "Source link" }), f.sourceUrl)),
+    el("label", { text: "Find the location" }), el("div", { style: "display:flex;gap:8px" }, f.search, el("button", { class: "secondary", type: "button", onclick: search }, "Search")), results,
+    el("div", { class: "two" }, el("div", {}, el("label", { text: "Latitude" }), f.lat), el("div", {}, el("label", { text: "Longitude" }), f.lng)),
+    where,
+    el("div", { class: "sticky" }, el("div", { class: "btns", style: "margin:0" },
+      el("button", { class: "primary", onclick: save }, existing ? "Save changes" : "Add to map"),
+      existing ? el("button", { class: "secondary", onclick: remove }, "Remove from map") : null)));
 }
 
 // ---- Settings ----
